@@ -1,0 +1,72 @@
+<footer class="site-footer h-card">
+  <data class="u-url" href=" "/" | relative_url "></data>
+
+  <div class="container footer__inner">
+    <div class="footer__top">
+      <div class="footer__col footer__col--left">
+        <p class="footer__lead">
+          Questions or comments?
+          <a href="https://letterbird.co/amaiken" target="_blank" rel="noopener">
+            Send me a quick email.
+          </a>
+        </p>
+
+        {%- if site.email -%}
+          <p class="footer__meta">
+            <a class="u-email" href="mailto: site.email "> site.email </a>
+          </p>
+        {%- endif -%}
+      </div>
+
+      <div class="footer__col footer__col--right">
+        {%- if site.description -%}
+          <p class="footer__meta"> site.description | escape </p>
+        {%- endif -%}
+
+        <a class="footer__mark" href=" site.url ">
+          <picture>
+            <source srcset=" site.footer-img-dark-scheme " media="(prefers-color-scheme: dark)" />
+            <img src=" site.footer-img-light-scheme " alt="" />
+          </picture>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p class="fine-print">
+        Copyright  "now" | date: "%Y"
+        <a href="https://amaiken.com/" target="_blank" rel="noopener">Best Cigar Matches</a>
+        — All Rights Reserved.
+      </p>
+
+      <p class="fine-print">
+        Website made by hand in Harrisburg, Pennsylvania by
+        <a href=" site.webmaster-url " target="_blank" rel="noopener"> site.webmaster </a>.
+      </p>
+
+      <p class="fine-print">Unless noted otherwise, all photographs were taken by Aaron Aiken.</p>
+
+      <p class="fine-print">
+        <em> site.product </em> logo was designed by
+        <a href="https://lettering.ningkantida.com/" target="_blank" rel="noopener">Ning Kantida</a>.
+      </p>
+
+      <p class="fine-print">
+        <em> site.product </em> is a product of
+        <em><a href="https://strathmereleather.com/" target="_blank" rel="noopener">Strathmere Leather</a></em>.
+        <br />
+        <em>Strathmere Leather</em> is a product line created and owned by
+        <em><a href="https://amaiken.com/" target="_blank" rel="noopener">A. M. Aiken</a></em>.
+      </p>
+
+      <div class="fine-print footer__tinylytics">
+        <span class="tinylytics_hits"></span>
+        <span class="tinylytics_countries"></span>
+        <button class="tinylytics_kudos"></button>
+        <span class="tinylytics_uptime"></span>
+      </div>
+    </div>
+  </div>
+
+  <script src=" site.tinylytics " defer></script>
+</footer>

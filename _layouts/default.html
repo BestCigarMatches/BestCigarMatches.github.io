@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  {% include head.html %}
+  <body class="theme-dark">
+	{% include header.html %}
+  
+	<main class="container">
+	  {% include nav.html %}
+  
+	  <section class="section section-hero">
+	  	{% include hero.html %}
+		 {{ content }}
+	  </section>
+  
+	  <section class="section section-video" id="video">
+		{% include video.html %}
+	  </section>
+  
+	  <section class="section section-purchase" id="purchase">
+		{% include purchase.html %}
+	  </section>
+	</main>
+  
+	{% include footer.html %}
+	{% include buttonjs.html %}
+  </body>
+</html>

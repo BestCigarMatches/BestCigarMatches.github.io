@@ -1,0 +1,136 @@
+title,body,labels,milestone
+Contact page,"Build /contact/ page.
+
+Layout: page
+page_ident: CONTACT
+
+- Contact form (name, email, message fields)
+- Form POSTs to Flask /contact endpoint (Milestone 5)
+- Friendly intro copy — not just a cold form
+- Note about response time
+- Letterbird embed removed, replaced with native form","content,flask",Content Pages
+Newsletter signup page,"Build /subscribe/ page.
+
+Layout: page
+page_ident: STAY IN THE LOOP
+
+- Brief friendly intro (what they are signing up for, no spam promise, unsubscribe anytime)
+- Name and email fields
+- Channel checkboxes:
+    New products
+    Restocks
+    Matches
+    Leather goods
+    Journal (new posts)
+- Submit button
+- Form POSTs to Flask /subscribe endpoint (Milestone 5)
+- Success state copy
+
+Also: subscribe teaser section on home page links here with a single email field quick-signup.","content,flask",Content Pages
+Shop index page,"Build /shop/ index page.
+
+Layout: shop
+page_ident: THE SHOP · MATCHES & LEATHER
+
+- Intro copy (brief, 1-2 sentences)
+- Product grid renders all _products/ entries
+- Simple category filter: All , Matches , Leather Goods (CSS-only show/hide or minimal JS — no framework)
+- Out-of-stock products still show, badge indicates status
+- Featured products appear first (sort by featured: true in front matter)","design,content",Shop & Products
+Cart state in JavaScript,"Build cart.js — vanilla JS, no framework.
+
+Responsibilities:
+- Maintain cart state (items, quantities, totals) in memory
+- Add to cart, remove from cart, update quantity
+- Open/close cart drawer
+- Update cart icon count badge
+- Persist cart to sessionStorage so it survives page navigation but clears when browser closes
+- Render cart items in drawer
+- Calculate and display subtotal
+
+No Stripe calls in this file — that happens at checkout button click.
+Lives in assets/js/cart.js","flask,design",Cart & Checkout
+Flask /create-checkout route,"Build the /create-checkout POST endpoint in Flask.
+
+Accepts: JSON cart payload (items, quantities, customer email)
+Actions:
+- Validate cart contents against known products/prices
+- Create Stripe Payment Intent via Stripe API
+- Return client_secret to browser
+
+Security:
+- Validate all prices server-side — never trust client-sent prices
+- CORS restricted to bestcigarmatches.com
+
+File: routes/checkout.py","flask,stripe",Cart & Checkout
+Stripe.js payment form,"Integrate Stripe.js payment form into checkout flow.
+
+- Load Stripe.js from Stripe CDN (never self-host)
+- On checkout button click: POST cart to /create-checkout, receive client_secret
+- Mount Stripe Elements payment form (card number, expiry, CVC, billing zip)
+- Style Elements to match design system (burgundy focus states, parchment/dark backgrounds)
+- Handle payment submission
+- On success: redirect to /order-confirmed/
+- On failure: display error message inline, allow retry
+- Test thoroughly with Stripe test card numbers","stripe,design",Cart & Checkout
+Flask /webhook route,"Build the Stripe webhook handler in Flask.
+
+- Register /webhook endpoint with Stripe dashboard
+- Verify webhook signature (Stripe-Signature header) — reject anything that does not verify
+- Handle payment_intent.succeeded event:
+    - Write order record to orders.json
+    - Send order confirmation email to customer
+    - Send order notification email to Aaron
+- Handle payment_intent.payment_failed event:
+    - Log failure
+- Return 200 quickly
+
+File: routes/webhooks.py","flask,stripe",Cart & Checkout
+End-to-end checkout test,"Full checkout flow test in Stripe test mode before switching to live.
+
+Test scenarios:
+- Add single item, complete checkout
+- Add multiple items, complete checkout
+- Remove item from cart, complete checkout
+- Payment failure (use Stripe test decline card)
+- Webhook receipt confirmed in Flask logs
+- Order record written to orders.json
+- Customer confirmation email received
+- Aaron notification email received
+- Redirect to /order-confirmed/ working
+- Cart clears after successful checkout","stripe,flask",Cart & Checkout
+Contact form front end,"Wire up the contact page form to Flask /contact.
+
+- Form submits via fetch() (no page reload)
+- Loading state on button while submitting
+- Success state: inline confirmation message
+- Error state: inline error message, allow retry
+- No page redirect on success — keep it smooth","design,flask",Email & Subscribers
+SEO configuration,"Complete SEO setup via jekyll-seo-tag and _config.yml.
+
+_config.yml fields to complete:
+- title: Best Cigar Matches
+- description: (write compelling 150-char description)
+- author: Aaron Aiken
+- twitter/social handles if applicable
+
+Per-page:
+- Confirm title and description front matter on all key pages
+- Open Graph image created and set (1200x630, derive from logo/brand)
+
+Confirm jekyll-sitemap generates sitemap.xml correctly.
+Submit sitemap to Google Search Console post-launch.","design,content",Pre-Launch
+Production smoke test,"Final smoke test on production domain after DNS resolves.
+
+Critical paths:
+- Home page loads correctly on bestcigarmatches.com
+- SSL padlock present
+- Shop loads, products display
+- Add to cart works
+- Checkout completes (real card, small amount, refund after)
+- Order confirmation email arrives
+- Contact form works
+- Subscribe form works
+- All pages load without console errors
+- Dark mode works on production
+- Mobile loads correctly on production","design,flask,stripe",Launch

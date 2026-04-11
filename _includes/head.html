@@ -1,0 +1,74 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {%- seo -%}
+  <link rel="stylesheet" href="/assets/main.css">
+  {%- feed_meta -%}
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '986605476589940');
+  fbq('track', 'PageView');
+  // This code should be loaded together with Meta Pixel
+  
+  var executeWhenElementIsVisible = function(dom_element, callback) {
+  
+    if (!(dom_element instanceof HTMLElement)) {
+      console.error('dom_element must be a valid HTMLElement');
+    }
+  
+    if (typeof callback !== 'function') {
+      console.error(
+        'Second parameter must be a function, got',
+        typeof callback,
+        'instead',
+      );
+    }
+  
+    function isOnViewport(elem) {
+      var rect = elem.getBoundingClientRect();
+      var docElem = document.documentElement;
+      return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || docElem.clientHeight) &&
+        rect.right <= (window.innerWidth || docElem.clientWidth)
+      );
+    }
+  
+    var executeCallback = (function() {
+      var wasExecuted = false;
+      return function() {
+        if (!wasExecuted && isOnViewport(dom_element)) {
+          wasExecuted = true;
+          callback();
+        }
+      };
+    })();
+  
+    window.addEventListener('scroll', executeCallback, false);
+  };
+  // Get the element that should be visible to trigger the pixel fire
+  var element = document.getElementById('fb-fire-pixel');
+  
+  // Then, set the event to be tracked when element is visible
+  // Note that second parameter is a function, not a function call
+  executeWhenElementIsVisible(element, function() {
+    fbq('track', 'Lead');
+  });
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=986605476589940&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+  
+  
+</head>

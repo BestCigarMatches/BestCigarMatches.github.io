@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+  {% include head.html %}
+  <body>
+	<!-- <h1>{{ page.title }}</h1> -->
+	<section>
+		{% include header.html %}
+		<div class="post-content">
+			{% include nav.html %}
+	    	{{ content }}
+		</div>
+	</section>
+	{% include footer.html %}
+	{% include buttonjs.html %}
+  </body>
+</html>
