@@ -8,7 +8,7 @@ tag-line:
 description:
 email:
 webmaster: Aaron Aiken
-webmaster-url: https://amaiken.com/
+webmaster-url: https://aaronaiken.me/
 url: "https://bestcigarmatches.com"
 baseurl: ""
 
@@ -29,10 +29,13 @@ main-video:
 
 # Collections
 collections:
-   products:
+  products:
     sort_by: name
     output: true
     permalink: /shop/:name/
+  pages:
+    output: true
+    permalink: /:name/
 
 # Build settings — no theme, fully custom layouts
 plugins:
@@ -50,3 +53,4 @@ exclude:
   - vendor/
   - decisions.md
   - borrowed-from-the-falcon.md
+  - bcmgithubissues.csv
