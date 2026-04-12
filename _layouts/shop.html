@@ -13,23 +13,33 @@
 
 		<header class="post-header">
 		  <h1 class="post-title">{{ page.title | default: "The Shop" }}</h1>
-		  {%- if page.intro -%}
-			<p class="hero__subhead">{{ page.intro }}</p>
+		  {%- if page.shop_intro -%}
+			<p class="hero__subhead">{{ page.shop_intro }}</p>
 		  {%- endif -%}
 		</header>
 
 		{%- if site.products -%}
+
+		  <!-- Category filter bar -->
+		  <div class="filter-bar" role="group" aria-label="Filter by category">
+			<button class="filter-btn filter-btn--active" data-filter="all" aria-pressed="true">All</button>
+			<button class="filter-btn" data-filter="matches" aria-pressed="false">Matches</button>
+			<button class="filter-btn" data-filter="leather-cigar-cases" aria-pressed="false">Leather Cigar Cases</button>
+			<button class="filter-btn" data-filter="leather-match-accessories" aria-pressed="false">Leather Match Accessories</button>
+			<button class="filter-btn" data-filter="small-leather-goods" aria-pressed="false">Small Leather Goods</button>
+		  </div>
+
 		  <div class="product-grid">
 			{%- assign featured = site.products | where: "featured", true -%}
 			{%- assign rest = site.products | where: "featured", false -%}
 			{%- assign sorted_products = featured | concat: rest -%}
 			{%- for product in sorted_products -%}
-			  <article class="product-card">
+			  <article class="product-card" data-category="{{ product.category }}">
 				{%- if product.images[0] -%}
 				  <a href="{{ product.url | relative_url }}">
 					<img
 					  class="product-card__img"
-					  src="{{ product.images[0] | relative_url }}"
+					  src="{{ product.images[0] }}"
 					  alt="{{ product.name }}"
 					  loading="lazy"
 					>
@@ -56,6 +66,7 @@
 			  </article>
 			{%- endfor -%}
 		  </div>
+
 		{%- else -%}
 		  <p class="text-muted">Products coming soon.</p>
 		{%- endif -%}
@@ -66,6 +77,7 @@
 
 	{% include footer.html %}
 	{% include buttonjs.html %}
+	<script src="{{ '/assets/js/filter.js' | relative_url }}"></script>
 
   </body>
 </html>
