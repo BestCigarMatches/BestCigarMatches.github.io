@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  {% include head.html %}
+  <body>
+
+	{% include header.html %}
+
+	<main class="container" id="main-content">
+
+	  {% include nav.html %}
+
+	  <section class="section">
+
+		<header class="post-header">
+		  <h1 class="post-title">{{ page.title | default: "The Journal" }}</h1>
+		  {%- if page.intro -%}
+			<p class="hero__subhead">{{ page.intro }}</p>
+		  {%- endif -%}
+		</header>
+
+		{{ content }}
+
+		{%- if site.posts.size > 0 -%}
+		  <div class="post-list">
+			{%- for post in site.posts -%}
+			  <article class="post-list__item">
+				<p class="post-list__date">
+				  <time datetime="{{ post.date | date_to_xmlschema }}">
+					{{ post.date | date: "%B %-d, %Y" }}
+				  </time>
+				</p>
+				<h2 class="post-list__title">
+				  <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+				</h2>
+				{%- if post.excerpt -%}
+				  <p class="post-list__excerpt">{{ post.excerpt | strip_html | truncatewords: 40 }}</p>
+				{%- endif -%}
+				<a class="btn btn-secondary btn--sm" href="{{ post.url | relative_url }}">Read more</a>
+			  </article>
+			{%- endfor -%}
+		  </div>
+		{%- else -%}
+		  <p class="text-muted">The first post is coming soon. Check back.</p>
+		{%- endif -%}
+
+	  </section>
+
+	</main>
+
+	{% include footer.html %}
+	{% include buttonjs.html %}
+
+  </body>
+</html>

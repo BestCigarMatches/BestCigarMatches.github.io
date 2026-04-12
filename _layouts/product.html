@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  {% include head.html %}
+  <body>
+
+	{% include header.html %}
+
+	<main class="container" id="main-content">
+
+	  {% include nav.html %}
+
+	  <article class="section">
+
+		<!-- Breadcrumb -->
+		<nav class="breadcrumb" aria-label="Breadcrumb">
+		  <a href="{{ site.url }}/shop/">Shop</a>
+		  <span aria-hidden="true"> › </span>
+		  <span class="label">{{ page.category | replace: "-", " " | capitalize }}</span>
+		  <span aria-hidden="true"> › </span>
+		  <span>{{ page.name }}</span>
+		</nav>
+
+		<!-- Product layout: two columns -->
+		<div class="product-detail">
+
+		  <!-- Images -->
+		  <div class="product-detail__images">
+			{%- if page.images[0] -%}
+			  <img
+				class="product-detail__img-main"
+				src="{{ page.images[0] | relative_url }}"
+				alt="{{ page.name }}"
+				id="product-img-main"
+			  >
+			  {%- if page.images.size > 1 -%}
+				<div class="product-detail__thumbs">
+				  {%- for img in page.images -%}
+					<img
+					  class="product-detail__thumb"
+					  src="{{ img | relative_url }}"
+					  alt="{{ page.name }} — image {{ forloop.index }}"
+					  loading="lazy"
+					>
+				  {%- endfor -%}
+				</div>
+			  {%- endif -%}
+			{%- else -%}
+			  <div class="product-detail__img-placeholder">
+				<p class="text-muted label">Image coming soon</p>
+			  </div>
+			{%- endif -%}
+		  </div>
+
+		  <!-- Details -->
+		  <div class="product-detail__info">
+
+			<p class="product-card__category">{{ page.category | replace: "-", " " | capitalize }}</p>
+
+			<h1 class="product-detail__name">{{ page.name }}</h1>
+
+			<p class="product-detail__price">{{ page.price_display }}</p>
+
+			{%- if page.in_stock -%}
+			  <span class="badge badge--in-stock">In Stock</span>
+			{%- else -%}
+			  <span class="badge badge--out-of-stock">Out of Stock</span>
+			{%- endif -%}
+
+			<!-- Add to Cart — shell; wired in Milestone 4 -->
+			{%- if page.in_stock -%}
+			  <button
+				class="btn btn-primary btn-add-to-cart"
+				data-product-name="{{ page.name }}"
+				data-product-price="{{ page.price }}"
+				data-product-sku="{{ page.sku }}"
+				data-product-img="{{ page.images[0] | relative_url }}"
+				aria-label="Add {{ page.name }} to cart"
+			  >
+				Add to Cart
+			  </button>
+			{%- else -%}
+			  <button class="btn btn-secondary" disabled aria-disabled="true">
+				Out of Stock
+			  </button>
+			{%- endif -%}
+
+			<div class="product-detail__description post-content">
+			  {{ content }}
+			</div>
+
+		  </div><!-- /.product-detail__info -->
+
+		</div><!-- /.product-detail -->
+
+		<!-- Related products — manual, from front matter -->
+		{%- if page.related -%}
+		  <div class="section">
+			<h2>You might also like</h2>
+			<div class="product-grid">
+			  {%- for slug in page.related -%}
+				{%- assign related_product = site.products | where: "slug", slug | first -%}
+				{%- if related_product -%}
+				  <article class="product-card">
+					{%- if related_product.images[0] -%}
+					  <a href="{{ related_product.url | relative_url }}">
+						<img
+						  class="product-card__img"
+						  src="{{ related_product.images[0] | relative_url }}"
+						  alt="{{ related_product.name }}"
+						  loading="lazy"
+						>
+					  </a>
+					{%- endif -%}
+					<div class="product-card__body">
+					  <h3 class="product-card__name">
+						<a href="{{ related_product.url | relative_url }}">{{ related_product.name }}</a>
+					  </h3>
+					  <p class="product-card__price">{{ related_product.price_display }}</p>
+					  <a class="btn btn-secondary btn--sm" href="{{ related_product.url | relative_url }}">View</a>
+					</div>
+				  </article>
+				{%- endif -%}
+			  {%- endfor -%}
+			</div>
+		  </div>
+		{%- endif -%}
+
+	  </article>
+
+	</main>
+
+	{% include footer.html %}
+	{% include buttonjs.html %}
+
+  </body>
+</html>
