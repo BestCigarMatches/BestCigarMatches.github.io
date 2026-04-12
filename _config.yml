@@ -37,6 +37,15 @@ collections:
     output: true
     permalink: /:name/
 
+# Front matter defaults
+defaults:
+  - scope:
+      path: "_products"
+      type: "products"
+    values:
+      layout: product
+      in_stock: false
+
 # Build settings — no theme, fully custom layouts
 plugins:
   - jekyll-feed
