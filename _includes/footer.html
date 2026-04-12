@@ -1,72 +1,87 @@
-<footer class="site-footer h-card">
-  <data class="u-url" href=" "/" | relative_url "></data>
+<footer class="site-footer">
 
   <div class="container footer__inner">
+
     <div class="footer__top">
+
       <div class="footer__col footer__col--left">
         <p class="footer__lead">
           Questions or comments?
-          <a href="https://letterbird.co/amaiken" target="_blank" rel="noopener">
-            Send me a quick email.
-          </a>
+          <a href="{{ site.url }}/contact/">Send a message.</a>
         </p>
-
         {%- if site.email -%}
           <p class="footer__meta">
-            <a class="u-email" href="mailto: site.email "> site.email </a>
+            <a href="mailto:{{ site.email }}">{{ site.email }}</a>
           </p>
         {%- endif -%}
       </div>
 
       <div class="footer__col footer__col--right">
-        {%- if site.description -%}
-          <p class="footer__meta"> site.description | escape </p>
+        {%- if site.footer-img-dark-scheme or site.footer-img-light-scheme -%}
+          <a class="footer__mark" href="{{ site.url }}/" aria-label="{{ site.product }} — home">
+            <picture>
+              {%- if site.footer-img-dark-scheme -%}
+                <source
+                  srcset="{{ site.footer-img-dark-scheme | relative_url }}"
+                  media="(prefers-color-scheme: dark)"
+                >
+              {%- endif -%}
+              <img
+                src="{{ site.footer-img-light-scheme | relative_url }}"
+                alt="{{ site.product }}"
+              >
+            </picture>
+          </a>
         {%- endif -%}
-
-        <a class="footer__mark" href=" site.url ">
-          <picture>
-            <source srcset=" site.footer-img-dark-scheme " media="(prefers-color-scheme: dark)" />
-            <img src=" site.footer-img-light-scheme " alt="" />
-          </picture>
-        </a>
       </div>
-    </div>
+
+    </div><!-- /.footer__top -->
 
     <div class="footer__bottom">
+
       <p class="fine-print">
-        Copyright  "now" | date: "%Y"
-        <a href="https://amaiken.com/" target="_blank" rel="noopener">Best Cigar Matches</a>
-        — All Rights Reserved.
+        Copyright &copy; {{ "now" | date: "%Y" }}
+        <a href="{{ site.url }}/">{{ site.product }}</a>
+        &mdash; All Rights Reserved.
       </p>
 
       <p class="fine-print">
         Website made by hand in Harrisburg, Pennsylvania by
-        <a href=" site.webmaster-url " target="_blank" rel="noopener"> site.webmaster </a>.
+        {%- if site.webmaster-url -%}
+          <a href="{{ site.webmaster-url }}" target="_blank" rel="noopener">{{ site.webmaster }}</a>.
+        {%- else -%}
+          {{ site.webmaster }}.
+        {%- endif -%}
       </p>
 
-      <p class="fine-print">Unless noted otherwise, all photographs were taken by Aaron Aiken.</p>
+      <p class="fine-print">
+        Unless noted otherwise, all photographs were taken by Aaron Aiken.
+      </p>
 
       <p class="fine-print">
-        <em> site.product </em> logo was designed by
+        <em>{{ site.product }}</em> logo designed by
         <a href="https://lettering.ningkantida.com/" target="_blank" rel="noopener">Ning Kantida</a>.
       </p>
 
       <p class="fine-print">
-        <em> site.product </em> is a product of
-        <em><a href="https://strathmereleather.com/" target="_blank" rel="noopener">Strathmere Leather</a></em>.
-        <br />
-        <em>Strathmere Leather</em> is a product line created and owned by
-        <em><a href="https://amaiken.com/" target="_blank" rel="noopener">A. M. Aiken</a></em>.
+        <a href="{{ site.url }}/privacy/">Privacy Policy</a>
+        &nbsp;&middot;&nbsp;
+        <a href="{{ site.url }}/terms/">Terms of Service</a>
+        &nbsp;&middot;&nbsp;
+        <a href="{{ site.url }}/shipping/">Shipping &amp; Returns</a>
       </p>
 
-      <div class="fine-print footer__tinylytics">
-        <span class="tinylytics_hits"></span>
-        <span class="tinylytics_countries"></span>
-        <button class="tinylytics_kudos"></button>
-        <span class="tinylytics_uptime"></span>
-      </div>
-    </div>
-  </div>
+      {%- if site.tinylytics -%}
+        <div class="fine-print footer__tinylytics">
+          <span class="tinylytics_hits"></span>
+          <span class="tinylytics_countries"></span>
+          <button class="tinylytics_kudos"></button>
+          <span class="tinylytics_uptime"></span>
+        </div>
+      {%- endif -%}
 
-  <script src=" site.tinylytics " defer></script>
+    </div><!-- /.footer__bottom -->
+
+  </div><!-- /.footer__inner -->
+
 </footer>

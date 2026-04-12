@@ -1,2 +1,15 @@
-<h2 id="video">{{ site.product}} Video Walkthrough</h2>
-<div style="position:relative;padding-top:56.25%;"><iframe src="https://iframe.mediadelivery.net/embed/117635/9aaac4a8-15cb-4237-a423-b3b40573d782?autoplay=false&loop=false&muted=false&preload=true&responsive=true" loading="lazy" style="border:0;position:absolute;top:0;height:100%;width:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen="true"></iframe></div>
+<h2>{{ site.product }} — Video Walkthrough</h2>
+
+{%- if site.main-video -%}
+  <div class="video-wrapper">
+	<iframe
+	  src="{{ site.main-video }}"
+	  loading="lazy"
+	  allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+	  allowfullscreen="true"
+	  title="{{ site.product }} video walkthrough"
+	></iframe>
+  </div>
+{%- else -%}
+  <p class="text-muted"><em>Video coming soon.</em></p>
+{%- endif -%}

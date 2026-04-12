@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  {% include head.html %}
+  <body>
+
+	{% include header.html %}
+
+	<main class="container" id="main-content">
+
+	  {% include nav.html %}
+
+	  <article class="section">
+
+		<header class="post-header">
+		  <h1 class="post-title">{{ page.title }}</h1>
+		  <p class="post-meta">
+			<time datetime="{{ page.date | date_to_xmlschema }}">
+			  {{ page.date | date: "%B %-d, %Y" }}
+			</time>
+			{%- if page.author -%}
+			  &nbsp;&middot;&nbsp;{{ page.author }}
+			{%- endif -%}
+		  </p>
+		</header>
+
+		<div class="post-content">
+		  {{ content }}
+		</div>
+
+		<!-- Prev / Next navigation -->
+		{%- if page.previous or page.next -%}
+		  <nav class="post-nav" aria-label="Post navigation">
+			{%- if page.next -%}
+			  <div class="post-nav__prev">
+				<p class="label">Earlier</p>
+				<a href="{{ page.next.url | relative_url }}">{{ page.next.title }}</a>
+			  </div>
+			{%- endif -%}
+			{%- if page.previous -%}
+			  <div class="post-nav__next">
+				<p class="label">Later</p>
+				<a href="{{ page.previous.url | relative_url }}">{{ page.previous.title }}</a>
+			  </div>
+			{%- endif -%}
+		  </nav>
+		{%- endif -%}
+
+		<div class="post-nav__back">
+		  <a href="{{ site.url }}/journal/">&larr; Back to the Journal</a>
+		</div>
+
+	  </article>
+
+	</main>
+
+	{% include footer.html %}
+	{% include buttonjs.html %}
+
+  </body>
+</html>

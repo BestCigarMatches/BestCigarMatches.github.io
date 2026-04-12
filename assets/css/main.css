@@ -310,6 +310,10 @@ main {
   text-decoration: none;
 }
 
+.nav__link--active {
+  color: var(--text);
+}
+
 .nav__link--cta {
   color: var(--text);
   background: var(--accent);
@@ -444,6 +448,11 @@ main {
   transform: translateY(-1px);
 }
 
+.btn--sm {
+  padding: 8px 18px;
+  font-size: 0.72rem;
+}
+
 .btn-primary {
   background: var(--accent);
   color: #F5EDD6;
@@ -478,10 +487,16 @@ main {
   color: #1C0F0A;
 }
 
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
 
 /* ------------------------------------------------------------
    ORNAMENTAL DIVIDER
-   A small branded separator — used between sections
    ------------------------------------------------------------ */
 .ornament {
   display: flex;
@@ -510,6 +525,27 @@ main {
   color: var(--gold);
   opacity: 0.75;
   user-select: none;
+}
+
+
+/* ------------------------------------------------------------
+   BREADCRUMB
+   ------------------------------------------------------------ */
+.breadcrumb {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+
+.breadcrumb a {
+  color: var(--muted);
+}
+
+.breadcrumb a:hover {
+  color: var(--accent);
 }
 
 
@@ -565,6 +601,15 @@ main {
   line-height: 1.3;
 }
 
+.product-card__name a {
+  color: inherit;
+}
+
+.product-card__name a:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
 .product-card__desc {
   font-size: 0.88rem;
   color: var(--muted);
@@ -610,6 +655,89 @@ main {
 
 
 /* ------------------------------------------------------------
+   PRODUCT DETAIL (individual product page)
+   ------------------------------------------------------------ */
+.product-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 52px;
+  align-items: start;
+  margin-top: 28px;
+}
+
+.product-detail__img-main {
+  width: 100%;
+  border-radius: var(--r);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+}
+
+.product-detail__img-placeholder {
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-detail__thumbs {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.product-detail__thumb {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  opacity: 0.75;
+  transition: opacity var(--ease), border-color var(--ease);
+}
+
+.product-detail__thumb:hover {
+  opacity: 1;
+  border-color: var(--accent);
+}
+
+.product-detail__name {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  margin-bottom: 12px;
+  margin-top: 8px;
+}
+
+.product-detail__price {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.product-detail__info .badge {
+  display: inline-block;
+  margin-bottom: 24px;
+}
+
+.product-detail__info .btn-add-to-cart {
+  margin-bottom: 32px;
+  width: 100%;
+}
+
+.product-detail__description {
+  border-top: 1px solid var(--border);
+  padding-top: 24px;
+  margin-top: 8px;
+}
+
+
+/* ------------------------------------------------------------
    VIDEO SECTION
    ------------------------------------------------------------ */
 .section-video h2 {
@@ -618,7 +746,7 @@ main {
 
 .video-wrapper {
   position: relative;
-  padding-top: 56.25%; /* 16:9 */
+  padding-top: 56.25%;
   border-radius: var(--r);
   overflow: hidden;
   border: 1px solid var(--border);
@@ -645,6 +773,40 @@ main {
 .purchase-intro {
   max-width: 60ch;
   margin-bottom: 28px;
+}
+
+
+/* ------------------------------------------------------------
+   POST NAV
+   ------------------------------------------------------------ */
+.post-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 52px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+}
+
+.post-nav__next {
+  text-align: right;
+}
+
+.post-nav__back {
+  margin-top: 28px;
+}
+
+.post-nav__back a {
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.post-nav__back a:hover {
+  color: var(--accent);
+  text-decoration: none;
 }
 
 
@@ -742,15 +904,18 @@ main {
 
 
 /* ------------------------------------------------------------
-   CART (Stripe JS — minimal base, JS will layer on top)
+   CART
    ------------------------------------------------------------ */
 .cart-icon {
   position: relative;
   display: inline-flex;
   align-items: center;
+  background: none;
+  border: none;
   cursor: pointer;
   color: var(--muted);
   transition: color var(--ease);
+  padding: 4px;
 }
 
 .cart-icon:hover {
@@ -1012,11 +1177,12 @@ main {
   font-size: 0.92rem;
   color: var(--muted);
   max-width: 60ch;
+  margin-bottom: 16px;
 }
 
 
 /* ------------------------------------------------------------
-   COLLAPSIBLE (carried from original)
+   COLLAPSIBLE
    ------------------------------------------------------------ */
 .collapsible {
   background: var(--surface);
@@ -1054,7 +1220,7 @@ main {
 
 
 /* ------------------------------------------------------------
-   FORMS (contact, subscribe)
+   FORMS
    ------------------------------------------------------------ */
 .form-group {
   margin-bottom: 18px;
@@ -1164,6 +1330,11 @@ main {
 
   .product-grid {
     grid-template-columns: 1fr;
+  }
+
+  .product-detail {
+    grid-template-columns: 1fr;
+    gap: 32px;
   }
 }
 
