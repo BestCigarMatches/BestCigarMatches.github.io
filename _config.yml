@@ -27,6 +27,16 @@ img-alt: Best Cigar Matches
 # Video — paste Bunny.net or other embed src URL
 main-video:
 
+# Stripe — payment processing
+# stripe_publishable_key: public key, safe to be in HTML. Never put secret key here.
+# stripe_enabled: controls whether Stripe.js loads site-wide. Set false in dev if needed.
+stripe_publishable_key: "pk_test_51TLhwn8DbHbx2eMbnOo7E3P5f4vVnhJTL7QpvFZbIQiniUAF2HPFlSRcPDijzrmnwyfum7DYiwglm3pXWCGxM0qM00RF08zpEh"
+stripe_enabled: true
+
+# Flask backend API base URL
+# Change to live URL when PythonAnywhere app is confirmed at that address.
+api_url: "https://admin.bestcigarmatches.com"
+
 # Collections
 collections:
   products:
@@ -45,6 +55,7 @@ defaults:
     values:
       layout: product
       in_stock: false
+      exclusive: false
 
 # Build settings — no theme, fully custom layouts
 plugins:
