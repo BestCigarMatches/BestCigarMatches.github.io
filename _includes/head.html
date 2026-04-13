@@ -3,13 +3,24 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  {%- seo -%}
+  {% seo %}
 
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 
-  {%- feed_meta -%}
+  {% feed_meta %}
+
+  {%- if site.stripe_publishable_key -%}
+  <meta name="stripe-key" content="{{ site.stripe_publishable_key }}">
+  {%- endif -%}
+  {%- if site.api_url -%}
+  <meta name="api-url" content="{{ site.api_url }}">
+  {%- endif -%}
+
+  {%- if site.stripe_enabled -%}
+  <script src="https://js.stripe.com/v3/" defer></script>
+  {%- endif -%}
 
   {%- if site.tinylytics -%}
-    <script src="{{ site.tinylytics }}" defer></script>
+  <script src="{{ site.tinylytics }}" defer></script>
   {%- endif -%}
 </head>
