@@ -1,0 +1,137 @@
+<!-- Cart overlay — click to close -->
+<div class="cart-overlay" id="cart-overlay" aria-hidden="true"></div>
+
+<!-- Cart drawer -->
+<div class="cart-drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-label="Your cart">
+
+  <div class="cart-drawer__header">
+	<h2 class="cart-drawer__title">Your Cart</h2>
+	<button class="cart-drawer__close" id="cart-close" aria-label="Close cart">&#x2715;</button>
+  </div>
+
+  <!-- Items area — populated by cart.js -->
+  <div class="cart-drawer__items" id="cart-items">
+	<!-- Empty state — shown when cart has no items -->
+	<div class="cart-empty" id="cart-empty">
+	  <p class="text-muted" style="text-align:center; padding: 40px 0;">
+		Your cart is empty.
+	  </p>
+	  <div style="text-align:center;">
+		<a href="{{ site.url }}/shop/" class="btn btn-secondary btn--sm">Browse the Shop</a>
+	  </div>
+	</div>
+  </div>
+
+  <!-- Footer — subtotal + checkout -->
+  <div class="cart-drawer__footer" id="cart-footer" hidden>
+	<div class="cart-total">
+	  <span class="cart-total__label">Subtotal</span>
+	  <span class="cart-total__amount" id="cart-subtotal">$0.00</span>
+	</div>
+	<p class="fine-print" style="margin-bottom: 16px; opacity: 0.7;">
+	  Tax calculated at checkout.
+	</p>
+	<button class="btn btn-primary" id="checkout-btn" style="width: 100%;">
+	  Proceed to Checkout
+	</button>
+  </div>
+
+</div>
+
+<!-- Checkout modal — shown after "Proceed to Checkout" -->
+<div class="checkout-overlay" id="checkout-overlay" aria-hidden="true" hidden></div>
+
+<div class="checkout-modal" id="checkout-modal" role="dialog" aria-modal="true" aria-label="Checkout" hidden>
+
+  <div class="checkout-modal__header">
+	<h2 class="checkout-modal__title">Checkout</h2>
+	<button class="checkout-modal__close" id="checkout-close" aria-label="Close checkout">&#x2715;</button>
+  </div>
+
+  <div class="checkout-modal__body">
+
+	<!-- Step 1: Customer info + shipping address -->
+	<div id="checkout-step-info">
+	  <p class="label" style="margin-bottom: 20px;">Shipping Information</p>
+
+	  <div class="form-group">
+		<label class="form-label" for="co-name">Full Name</label>
+		<input class="form-input" type="text" id="co-name" name="name"
+		  autocomplete="name" required>
+	  </div>
+
+	  <div class="form-group">
+		<label class="form-label" for="co-email">Email Address</label>
+		<input class="form-input" type="email" id="co-email" name="email"
+		  autocomplete="email" required>
+	  </div>
+
+	  <div class="form-group">
+		<label class="form-label" for="co-address1">Address Line 1</label>
+		<input class="form-input" type="text" id="co-address1" name="address1"
+		  autocomplete="address-line1" required>
+	  </div>
+
+	  <div class="form-group">
+		<label class="form-label" for="co-address2">Address Line 2 <span class="text-muted" style="font-size:0.8em;">(optional)</span></label>
+		<input class="form-input" type="text" id="co-address2" name="address2"
+		  autocomplete="address-line2">
+	  </div>
+
+	  <div style="display: grid; grid-template-columns: 1fr 100px 90px; gap: 12px;">
+		<div class="form-group">
+		  <label class="form-label" for="co-city">City</label>
+		  <input class="form-input" type="text" id="co-city" name="city"
+			autocomplete="address-level2" required>
+		</div>
+		<div class="form-group">
+		  <label class="form-label" for="co-state">State</label>
+		  <input class="form-input" type="text" id="co-state" name="state"
+			autocomplete="address-level1" maxlength="2" placeholder="PA" required
+			style="text-transform: uppercase;">
+		</div>
+		<div class="form-group">
+		  <label class="form-label" for="co-zip">ZIP</label>
+		  <input class="form-input" type="text" id="co-zip" name="zip"
+			autocomplete="postal-code" maxlength="10" required>
+		</div>
+	  </div>
+
+	  <!-- Newsletter opt-in at checkout -->
+	  <div class="form-group" style="margin-top: 8px;">
+		<label class="form-check" for="co-optin">
+		  <input type="checkbox" id="co-optin" name="optin" checked>
+		  Keep me posted on new products and restocks
+		</label>
+	  </div>
+
+	  <div class="checkout-modal__error" id="info-error" hidden></div>
+
+	  <button class="btn btn-primary" id="info-continue-btn" style="width: 100%; margin-top: 20px;">
+		Continue to Payment
+	  </button>
+	</div>
+
+	<!-- Step 2: Stripe Payment Element -->
+	<div id="checkout-step-payment" hidden>
+	  <p class="label" style="margin-bottom: 20px;">Payment</p>
+
+	  <div id="payment-element" style="margin-bottom: 20px;">
+		<!-- Stripe Payment Element mounts here -->
+	  </div>
+
+	  <div class="checkout-modal__error" id="payment-error" hidden></div>
+
+	  <button class="btn btn-primary" id="pay-btn" style="width: 100%; margin-top: 4px;">
+		Pay <span id="pay-btn-amount"></span>
+	  </button>
+
+	  <button class="btn btn-secondary btn--sm" id="back-to-info-btn"
+		style="width: 100%; margin-top: 10px;">
+		&#8592; Back
+	  </button>
+	</div>
+
+  </div><!-- /.checkout-modal__body -->
+
+</div>
