@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  var ENDPOINT = 'https://api.bestcigarmatches.com/subscribe';
+  var ENDPOINT = 'https://admin.bestcigarmatches.com/subscribe';
 
   var emailInput = document.getElementById('cs-email');
   var submitBtn  = document.getElementById('cs-submit');
