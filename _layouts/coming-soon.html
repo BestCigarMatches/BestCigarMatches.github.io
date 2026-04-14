@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+  <meta name="robots" content="index, follow">
+
+  <!-- Bunny Fonts -->
+  <link rel="preconnect" href="https://fonts.bunny.net">
+  <link href="https://fonts.bunny.net/css?family=cormorant-garamond:400,400i,600,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.bunny.net/css?family=lora:400,400i,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.bunny.net/css?family=dm-sans:400,500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+
+  <style>
+	/* Coming soon overrides — layout only, tokens from main.css */
+	body {
+	  display: flex;
+	  flex-direction: column;
+	  align-items: center;
+	  justify-content: flex-start;
+	  min-height: 100vh;
+	  padding: 0 24px 60px;
+	}
+
+	.cs-wrap {
+	  position: relative;
+	  z-index: 1;
+	  width: 100%;
+	  max-width: 860px;
+	  display: flex;
+	  flex-direction: column;
+	  align-items: center;
+	  text-align: center;
+	}
+
+	/* Logo */
+	.cs-logo {
+	  margin: 52px 0 36px;
+	}
+
+	.cs-logo img {
+	  height: 80px;
+	  width: auto;
+	}
+
+	.cs-logo__text {
+	  font-family: var(--font-display);
+	  font-size: 1.6rem;
+	  font-weight: 700;
+	  color: var(--text);
+	  letter-spacing: 0.04em;
+	}
+
+	/* Ornament */
+	.cs-ornament {
+	  display: flex;
+	  align-items: center;
+	  gap: 14px;
+	  margin: 0 auto 36px;
+	  width: 100%;
+	  max-width: 320px;
+	}
+
+	.cs-ornament::before,
+	.cs-ornament::after {
+	  content: '';
+	  display: block;
+	  height: 1px;
+	  flex: 1;
+	  background: linear-gradient(to right, transparent, var(--gold));
+	}
+
+	.cs-ornament::after {
+	  background: linear-gradient(to left, transparent, var(--gold));
+	}
+
+	.cs-ornament__mark {
+	  font-size: 0.9rem;
+	  color: var(--gold);
+	  opacity: 0.75;
+	  user-select: none;
+	}
+
+	/* Headline */
+	.cs-headline {
+	  font-family: var(--font-display);
+	  font-size: clamp(2rem, 5vw, 3.2rem);
+	  font-weight: 700;
+	  line-height: 1.15;
+	  color: var(--text);
+	  margin-bottom: 16px;
+	  max-width: 20ch;
+	}
+
+	.cs-subhead {
+	  font-family: var(--font-display);
+	  font-size: clamp(1rem, 2vw, 1.25rem);
+	  font-style: italic;
+	  color: var(--muted);
+	  margin-bottom: 40px;
+	  max-width: 46ch;
+	}
+
+	/* Product images */
+	.cs-products {
+	  display: grid;
+	  grid-template-columns: repeat(3, 1fr);
+	  gap: 16px;
+	  width: 100%;
+	  margin-bottom: 52px;
+	}
+
+	.cs-product-img {
+	  width: 100%;
+	  aspect-ratio: 4/3;
+	  object-fit: cover;
+	  border-radius: var(--r);
+	  border: 1px solid var(--border);
+	  box-shadow: var(--shadow-md);
+	  background: var(--surface);
+	  display: block;
+	}
+
+	/* Placeholder shown when image src is empty */
+	.cs-product-placeholder {
+	  width: 100%;
+	  aspect-ratio: 4/3;
+	  border-radius: var(--r);
+	  border: 1px solid var(--border);
+	  background: var(--surface);
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	}
+
+	.cs-product-placeholder span {
+	  font-family: var(--font-ui);
+	  font-size: 0.65rem;
+	  letter-spacing: 0.12em;
+	  text-transform: uppercase;
+	  color: var(--muted);
+	  opacity: 0.4;
+	}
+
+	/* Notify form */
+	.cs-notify {
+	  width: 100%;
+	  max-width: 440px;
+	  margin-bottom: 16px;
+	}
+
+	.cs-notify__label {
+	  font-family: var(--font-ui);
+	  font-size: 0.72rem;
+	  letter-spacing: 0.14em;
+	  text-transform: uppercase;
+	  color: var(--gold);
+	  margin-bottom: 14px;
+	  display: block;
+	}
+
+	.cs-notify__row {
+	  display: flex;
+	  gap: 10px;
+	}
+
+	.cs-notify__input {
+	  flex: 1;
+	  background: var(--surface);
+	  border: 1px solid var(--border);
+	  border-radius: var(--r);
+	  padding: 11px 14px;
+	  font-family: var(--font-body);
+	  font-size: 0.95rem;
+	  color: var(--text);
+	  transition: border-color var(--ease), box-shadow var(--ease);
+	}
+
+	.cs-notify__input::placeholder {
+	  color: var(--muted);
+	  opacity: 0.5;
+	}
+
+	.cs-notify__input:focus {
+	  outline: none;
+	  border-color: var(--accent);
+	  box-shadow: 0 0 0 3px rgba(107, 30, 42, 0.12);
+	}
+
+	.cs-notify__status {
+	  margin-top: 12px;
+	  font-family: var(--font-ui);
+	  font-size: 0.78rem;
+	  letter-spacing: 0.06em;
+	  min-height: 1.4em;
+	  text-align: left;
+	}
+
+	.cs-notify__status.is-success { color: var(--gold); }
+	.cs-notify__status.is-error   { color: var(--accent-hi); }
+
+	/* Fine print */
+	.cs-fine-print {
+	  margin-top: 48px;
+	  padding-top: 24px;
+	  border-top: 1px solid var(--border);
+	  width: 100%;
+	  display: flex;
+	  flex-wrap: wrap;
+	  justify-content: center;
+	  gap: 6px 18px;
+	}
+
+	.cs-fine-print p,
+	.cs-fine-print a {
+	  font-family: var(--font-ui);
+	  font-size: 0.65rem;
+	  letter-spacing: 0.07em;
+	  text-transform: uppercase;
+	  color: var(--muted);
+	  opacity: 0.55;
+	  margin: 0;
+	}
+
+	.cs-fine-print a:hover {
+	  opacity: 1;
+	  color: var(--accent);
+	  text-decoration: none;
+	}
+
+	/* Responsive */
+	@media (max-width: 600px) {
+	  .cs-products {
+		grid-template-columns: 1fr 1fr;
+	  }
+
+	  .cs-notify__row {
+		flex-direction: column;
+	  }
+
+	  .cs-notify__row .btn {
+		width: 100%;
+		text-align: center;
+	  }
+	}
+
+	@media (max-width: 400px) {
+	  .cs-products {
+		grid-template-columns: 1fr;
+	  }
+	}
+  </style>
+</head>
+<body>
+
+  <div class="cs-wrap">
+
+	<!-- Logo -->
+	<div class="cs-logo">
+	  {% if site.primary-img-light-scheme and site.primary-img-light-scheme != "" %}
+		<picture>
+		  <source media="(prefers-color-scheme: dark)"  srcset="{{ site.primary-img-dark-scheme }}">
+		  <source media="(prefers-color-scheme: light)" srcset="{{ site.primary-img-light-scheme }}">
+		  <img src="{{ site.primary-img-light-scheme }}" alt="{{ site.img-alt | default: site.title }}">
+		</picture>
+	  {% else %}
+		<p class="cs-logo__text">Best Cigar Matches</p>
+	  {% endif %}
+	</div>
+
+	<!-- Ornament -->
+	<div class="cs-ornament">
+	  <span class="cs-ornament__mark">✦</span>
+	</div>
+
+	<!-- Headline -->
+	<h1 class="cs-headline">Hand-Finished Matches &amp; Leather Goods</h1>
+	<p class="cs-subhead">Made by hand, unhurried. Launching soon — be the first to know.</p>
+
+	<!-- Product images -->
+	<div class="cs-products">
+	  {% if page.preview_image_1 and page.preview_image_1 != "" %}
+		<img class="cs-product-img" src="{{ page.preview_image_1 }}" alt="Best Cigar Matches product" loading="lazy">
+	  {% else %}
+		<div class="cs-product-placeholder"><span>Photo coming</span></div>
+	  {% endif %}
+	  {% if page.preview_image_2 and page.preview_image_2 != "" %}
+		<img class="cs-product-img" src="{{ page.preview_image_2 }}" alt="Best Cigar Matches product" loading="lazy">
+	  {% else %}
+		<div class="cs-product-placeholder"><span>Photo coming</span></div>
+	  {% endif %}
+	  {% if page.preview_image_3 and page.preview_image_3 != "" %}
+		<img class="cs-product-img" src="{{ page.preview_image_3 }}" alt="Best Cigar Matches product" loading="lazy">
+	  {% else %}
+		<div class="cs-product-placeholder"><span>Photo coming</span></div>
+	  {% endif %}
+	</div>
+
+	<!-- Notify form -->
+	<div class="cs-notify">
+	  <span class="cs-notify__label">Notify me at launch</span>
+	  <div class="cs-notify__row">
+		<input
+		  class="cs-notify__input"
+		  type="email"
+		  id="cs-email"
+		  placeholder="your@email.com"
+		  autocomplete="email"
+		  required
+		>
+		<button class="btn btn-primary" id="cs-submit">Notify Me</button>
+	  </div>
+	  <div class="cs-notify__status" id="cs-status" role="status" aria-live="polite"></div>
+	</div>
+
+	<!-- Fine print -->
+	<div class="cs-fine-print">
+	  <p>Best Cigar Matches &mdash; bestcigarmatches.com</p>
+	  <a href="/privacy/">Privacy Policy</a>
+	  <a href="/terms/">Terms of Service</a>
+	  <a href="/shipping/">Shipping &amp; Returns</a>
+	  <p>Made by hand in America &mdash; not tracking you</p>
+	</div>
+
+  </div>
+
+  <script src="{{ '/assets/js/notify.js' | relative_url }}"></script>
+
+</body>
+</html>
