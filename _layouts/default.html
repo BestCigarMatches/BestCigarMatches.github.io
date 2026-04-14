@@ -1,27 +1,38 @@
 <!doctype html>
 <html lang="en">
   {% include head.html %}
-  <body class="theme-dark">
+  <body>
+
 	{% include header.html %}
-  
-	<main class="container">
+
+	<main class="container" id="main-content">
+
 	  {% include nav.html %}
-  
+
 	  <section class="section section-hero">
-	  	{% include hero.html %}
-		 {{ content }}
+		{% include hero.html %}
+		{{ content }}
 	  </section>
-  
+
 	  <section class="section section-video" id="video">
 		{% include video.html %}
 	  </section>
-  
+
+	  <section class="section section-subscribe">
+		<p class="hero__kicker">Stay in the loop</p>
+		<h2>New products. Restocks. The occasional dispatch.</h2>
+		<p>No spam. Unsubscribe anytime.</p>
+		<a class="btn btn-secondary" href="{{ site.url }}/subscribe/">Subscribe</a>
+	  </section>
+
 	  <section class="section section-purchase" id="purchase">
 		{% include purchase.html %}
 	  </section>
+
 	</main>
-  
+
 	{% include footer.html %}
 	{% include buttonjs.html %}
+
   </body>
 </html>

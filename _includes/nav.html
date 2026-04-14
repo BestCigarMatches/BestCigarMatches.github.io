@@ -1,7 +1,34 @@
-<nav class="nav">
-  <a class="nav__link" href="{{site.url}}/">Home</a>
-  <span class="nav__sep">•</span>
-  <a class="nav__link" href="{{site.url}}/#video">Video</a>
-  <span class="nav__sep">•</span>
-  <a class="nav__link nav__link--cta" href="{{site.url}}/#purchase">Purchase</a>
+<nav class="nav" aria-label="Primary navigation">
+
+  <a class="nav__link{% if page.url == '/' %} nav__link--active{% endif %}"
+     href="{{ site.url }}/">Home</a>
+
+  <span class="nav__sep" aria-hidden="true">•</span>
+
+  <a class="nav__link{% if page.url contains '/shop' %} nav__link--active{% endif %}"
+     href="{{ site.url }}/shop/">Shop</a>
+
+  <span class="nav__sep" aria-hidden="true">•</span>
+
+  <a class="nav__link{% if page.url contains '/journal' %} nav__link--active{% endif %}"
+     href="{{ site.url }}/journal/">Journal</a>
+
+  <span class="nav__sep" aria-hidden="true">•</span>
+
+  <a class="nav__link{% if page.url contains '/about' %} nav__link--active{% endif %}"
+     href="{{ site.url }}/about/">About</a>
+
+  <span class="nav__sep" aria-hidden="true">•</span>
+
+  <a class="nav__link{% if page.url contains '/contact' %} nav__link--active{% endif %}"
+     href="{{ site.url }}/contact/">Contact</a>
+
+  <span class="nav__sep" aria-hidden="true">•</span>
+
+  <a class="nav__link nav__link--cta" href="{{ site.url }}/#purchase">Purchase</a>
+
 </nav>
+
+{%- if page.page_ident -%}
+  <p class="nav__ident">{{ page.page_ident }}</p>
+{%- endif -%}

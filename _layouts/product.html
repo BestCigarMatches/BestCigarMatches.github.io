@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+  {% include head.html %}
+  <body>
+
+	{% include header.html %}
+
+	<main class="container" id="main-content">
+
+	  {% include nav.html %}
+
+	  <article class="section">
+
+		<!-- Breadcrumb -->
+		<nav class="breadcrumb" aria-label="Breadcrumb">
+		  <a href="{{ site.url }}/shop/">Shop</a>
+		  <span aria-hidden="true"> › </span>
+		  <span class="label">{{ page.category | replace: "-", " " | capitalize }}</span>
+		  <span aria-hidden="true"> › </span>
+		  <span>{{ page.name }}</span>
+		</nav>
+
+		<!-- Product layout: two columns -->
+		<div class="product-detail">
+
+		  <!-- Images -->
+		  <div class="product-detail__images">
+			{%- if page.images[0] -%}
+			  <img
+				class="product-detail__img-main"
+				src="{{ page.images[0] }}"
+				alt="{{ page.name }}"
+				id="product-img-main"
+			  >
+			  {%- if page.images.size > 1 -%}
+				<div class="product-detail__thumbs">
+				  {%- for img in page.images -%}
+					<img
+					  class="product-detail__thumb"
+					  src="{{ img }}"
+					  alt="{{ page.name }} — image {{ forloop.index }}"
+					  loading="lazy"
+					>
+				  {%- endfor -%}
+				</div>
+			  {%- endif -%}
+			{%- else -%}
+			  <div class="product-detail__img-placeholder">
+				<p class="text-muted label">Image coming soon</p>
+			  </div>
+			{%- endif -%}
+		  </div>
+
+		  <!-- Details -->
+		  <div class="product-detail__info">
+
+			<p class="product-card__category">{{ page.category | replace: "-", " " | capitalize }}</p>
+
+			<h1 class="product-detail__name">{{ page.name }}</h1>
+
+			<p class="product-detail__price" id="product-display-price">{{ page.price_display }}</p>
+
+			{%- if page.in_stock -%}
+			  <span class="badge badge--in-stock">In Stock</span>
+			{%- else -%}
+			  <span class="badge badge--out-of-stock">Out of Stock</span>
+			{%- endif -%}
+
+			<!-- Monogram callout and input — BCM-CC-05 only -->
+			{%- if page.monogram -%}
+			  <div class="monogram-callout">
+				<p class="monogram-callout__label">Monogram Available</p>
+				<p class="monogram-callout__body">
+				  Up to 3 characters, hand-stamped. Add
+				  <span class="monogram-callout__price">${{ page.monogram_price }}</span>
+				  at checkout. {{ page.monogram_turnaround }}
+				</p>
+				<div class="monogram-input-wrap" id="monogram-wrap">
+				  <label class="form-check" for="monogram-opt-in">
+					<input type="checkbox" id="monogram-opt-in" name="monogram-opt-in">
+					Add monogram (+${{ page.monogram_price }})
+				  </label>
+				  <div class="monogram-text-wrap" id="monogram-text-wrap" hidden>
+					<label class="form-label" for="monogram-text">Your initials (up to 3 characters)</label>
+					<input
+					  class="form-input monogram-text-input"
+					  type="text"
+					  id="monogram-text"
+					  name="monogram-text"
+					  maxlength="3"
+					  placeholder="e.g. AAA"
+					  autocomplete="off"
+					  style="max-width: 120px; text-transform: uppercase; letter-spacing: 0.15em;"
+					>
+				  </div>
+				</div>
+			  </div>
+			{%- endif -%}
+
+			<!-- Add to Cart — wired in Milestone 4 via cart.js -->
+			{%- if page.in_stock -%}
+			  <button
+				class="btn btn-primary btn-add-to-cart"
+				data-product-name="{{ page.name }}"
+				data-product-price="{{ page.price }}"
+				data-product-sku="{{ page.sku }}"
+				data-product-img="{{ page.images[0] }}"
+				data-product-exclusive="{{ page.exclusive | default: false }}"
+				{%- if page.monogram -%}
+				data-product-monogram="true"
+				data-product-monogram-price="{{ page.monogram_price }}"
+				{%- endif -%}
+				aria-label="Add {{ page.name }} to cart"
+			  >
+				Add to Cart
+			  </button>
+			{%- else -%}
+			  <button class="btn btn-secondary" disabled aria-disabled="true">
+				Out of Stock
+			  </button>
+			{%- endif -%}
+
+			<div class="product-detail__description post-content">
+			  {{ content }}
+			</div>
+
+		  </div><!-- /.product-detail__info -->
+
+		</div><!-- /.product-detail -->
+
+		<!-- Related products — matched by SKU from front matter -->
+		{%- if page.related -%}
+		  {%- assign related_found = "" | split: "" -%}
+		  {%- for sku in page.related -%}
+			{%- assign match = site.products | where: "sku", sku | first -%}
+			{%- if match -%}
+			  {%- assign related_found = related_found | push: match -%}
+			{%- endif -%}
+		  {%- endfor -%}
+		  {%- if related_found.size > 0 -%}
+			<div class="related-products">
+			  <p class="related-products__label">You might also like</p>
+			  <div class="related-products__grid">
+				{%- for related_product in related_found -%}
+				  <a class="related-card" href="{{ related_product.url | relative_url }}">
+					{%- if related_product.images[0] -%}
+					  <img
+						class="related-card__img"
+						src="{{ related_product.images[0] }}"
+						alt="{{ related_product.name }}"
+						loading="lazy"
+					  >
+					{%- else -%}
+					  <div class="related-card__img"></div>
+					{%- endif -%}
+					<div class="related-card__body">
+					  <p class="related-card__name">{{ related_product.name }}</p>
+					  <p class="related-card__price">{{ related_product.price_display }}</p>
+					</div>
+				  </a>
+				{%- endfor -%}
+			  </div>
+			</div>
+		  {%- endif -%}
+		{%- endif -%}
+
+	  </article>
+
+	</main>
+
+	{% include footer.html %}
+	{% include buttonjs.html %}
+
+	<!-- Monogram opt-in toggle — scoped to product pages with monogram -->
+	{%- if page.monogram -%}
+	<script>
+	  (function () {
+		var optIn = document.getElementById('monogram-opt-in');
+		var textWrap = document.getElementById('monogram-text-wrap');
+		var textInput = document.getElementById('monogram-text');
+		var displayPrice = document.getElementById('product-display-price');
+		var addBtn = document.querySelector('.btn-add-to-cart');
+		var basePrice = parseFloat(addBtn ? addBtn.dataset.productPrice : 0);
+		var monogramPrice = parseFloat(addBtn ? addBtn.dataset.productMonogramPrice : 0);
+
+		if (!optIn) return;
+
+		optIn.addEventListener('change', function () {
+		  if (this.checked) {
+			textWrap.hidden = false;
+			textInput.required = true;
+			textInput.focus();
+			if (displayPrice) {
+			  displayPrice.textContent = '$' + (basePrice + monogramPrice).toFixed(2);
+			}
+		  } else {
+			textWrap.hidden = true;
+			textInput.required = false;
+			textInput.value = '';
+			if (displayPrice) {
+			  displayPrice.textContent = addBtn.dataset.productPrice
+				? '$' + parseFloat(addBtn.dataset.productPrice).toFixed(2)
+				: displayPrice.textContent;
+			}
+		  }
+		});
+
+		textInput.addEventListener('input', function () {
+		  this.value = this.value.toUpperCase().replace(/[^A-Z]/g, '');
+		});
+	  })();
+	</script>
+	{%- endif -%}
+
+  </body>
+</html>
