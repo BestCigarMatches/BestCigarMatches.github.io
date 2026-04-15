@@ -1,6 +1,5 @@
 <header class="site-header" role="banner">
   <div class="container header__inner">
-
     <a class="site-logo" href="{{ site.url }}/" aria-label="{{ site.product }} — home">
       <img
         src="{{ '/assets/img/logos/bcmLogo-400.png' | relative_url }}"
@@ -9,7 +8,6 @@
         width="auto"
       >
     </a>
-
     <button class="cart-icon" id="cart-toggle" aria-label="Open cart" aria-expanded="false">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
            fill="none" stroke="currentColor" stroke-width="1.5"
@@ -20,6 +18,7 @@
       </svg>
       <span class="cart-icon__count" id="cart-count" aria-live="polite">0</span>
     </button>
-
   </div>
 </header>
+
+{% include cart-drawer.html %}

@@ -14,8 +14,6 @@ Use the form below for questions, order inquiries, or anything else. If you're a
   <form
 	id="contact-form"
 	class="contact-form"
-	action="https://api.bestcigarmatches.com/contact"
-	method="POST"
 	novalidate
   >
 	<div class="form-group">
@@ -64,4 +62,64 @@ Use the form below for questions, order inquiries, or anything else. If you're a
   </form>
 </div>
 
-<!-- Contact form JS wired in Milestone 5 -->
+<script>
+(function () {
+  var form      = document.getElementById('contact-form');
+  var submitBtn = document.getElementById('contact-submit');
+  var statusEl  = document.getElementById('contact-status');
+  var apiUrl    = (document.querySelector('meta[name="api-url"]') || {}).content
+                  || 'https://admin.bestcigarmatches.com';
+
+  if (!form) return;
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var name    = document.getElementById('contact-name').value.trim();
+    var email   = document.getElementById('contact-email').value.trim();
+    var message = document.getElementById('contact-message').value.trim();
+
+    if (!name || !email || !message) {
+      setStatus('error', 'Please fill in all fields.');
+      return;
+    }
+
+    setLoading(true);
+    setStatus('', '');
+
+    fetch(apiUrl + '/contact', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ name: name, email: email, message: message })
+    })
+    .then(function (res) {
+      return res.json().then(function (data) {
+        return { ok: res.ok, data: data };
+      });
+    })
+    .then(function (result) {
+      setLoading(false);
+      if (result.ok) {
+        setStatus('success', 'Message sent. You\'ll hear back soon.');
+        form.reset();
+      } else {
+        setStatus('error', result.data.error || 'Something went wrong. Please try again.');
+      }
+    })
+    .catch(function () {
+      setLoading(false);
+      setStatus('error', 'Could not send message. Please try again.');
+    });
+  });
+
+  function setLoading(loading) {
+    submitBtn.disabled    = loading;
+    submitBtn.textContent = loading ? 'Sending…' : 'Send Message';
+  }
+
+  function setStatus(type, msg) {
+    statusEl.textContent = msg;
+    statusEl.className   = 'contact-form__status' + (type ? ' is-' + type : '');
+  }
+})();
+</script>
