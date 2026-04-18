@@ -16,6 +16,22 @@ images:
 monogram: true
 monogram_price: 10
 monogram_turnaround: "Add 2–3 business days to processing time."
+monogram_styles:
+- id: "eighth"
+  label: "1/8\" — Sans Serif"
+  desc: "Small and refined. Clean lines, no flourish."
+  image_detail: "https://bcm-media.b-cdn.net/products/misc/monogram-detail.jpg"
+  image_case: "https://bcm-media.b-cdn.net/products/misc/monogram-case.jpg"
+- id: "quarter"
+  label: "1/4\" — Serif"
+  desc: "Classic weight. Most popular choice."
+  image_detail: "https://bcm-media.b-cdn.net/products/misc/monogram-detail.jpg"
+  image_case: "https://bcm-media.b-cdn.net/products/misc/monogram-case.jpg"
+- id: "threeeighths"
+  label: "3/8\" — Decorative"
+  desc: "Bold and traditional. Makes a statement."
+  image_detail: "https://bcm-media.b-cdn.net/products/misc/monogram-detail.jpg"
+  image_case: "https://bcm-media.b-cdn.net/products/misc/monogram-case.jpg"
 stripe_price_id: ""
 related:
   - BCM-CC-03

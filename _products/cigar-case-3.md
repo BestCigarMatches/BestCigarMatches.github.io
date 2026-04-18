@@ -7,11 +7,16 @@ category: leather-cigar-cases
 page_ident: "THE SHOP · LEATHER CIGAR CASES"
 featured: true
 in_stock: true
+exclusive: false
 short_desc: "Hand-finished leather cigar case. Holds three to four cigars. Slim, clean, ready to travel."
 images:
   - https://bcm-media.b-cdn.net/products/cigar-case-3/cigar-case-3-01.jpg
   - https://bcm-media.b-cdn.net/products/cigar-case-3/cigar-case-3-02.jpg
   - https://bcm-media.b-cdn.net/products/cigar-case-3/cigar-case-3-03.jpg
+monogram: true
+monogram_price: 10
+monogram_turnaround: "Add 2–3 business days to processing time."
+stripe_price_id: ""
 stripe_price_id: ""
 related:
   - BCM-CC-05
