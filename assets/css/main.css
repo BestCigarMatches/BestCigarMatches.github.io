@@ -1799,6 +1799,103 @@ main {
   font-size: 1.1rem;
 }
 
+/* ------------------------------------------------------------
+   MONOGRAM STYLE SELECTOR
+   Three-up radio card grid on product pages with monogram option.
+   Append to end of main.css.
+   ------------------------------------------------------------ */
+
+.monogram-style-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.monogram-style-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 10px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  cursor: pointer;
+  transition: border-color var(--ease), background var(--ease);
+  text-align: center;
+}
+
+.monogram-style-card:hover {
+  border-color: var(--gold);
+  background: var(--surface-2);
+}
+
+.monogram-style-card.is-selected {
+  border-color: var(--gold);
+  background: var(--surface-2);
+  box-shadow: 0 0 0 2px rgba(201, 168, 76, 0.25);
+}
+
+.monogram-style-card__img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  display: block;
+}
+
+.monogram-style-card__toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color var(--ease);
+}
+
+.monogram-style-card__toggle:hover {
+  color: var(--accent);
+}
+
+/* Hide the native radio button — card itself is the visual */
+.monogram-style-radio {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.monogram-style-card__label {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--text);
+  display: block;
+}
+
+.monogram-style-card__desc {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.4;
+  display: block;
+}
+
+/* Stack to single column on small screens */
+@media (max-width: 480px) {
+  .monogram-style-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
 /* ------------------------------------------------------------
    RESPONSIVE — checkout modal on mobile

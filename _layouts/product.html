@@ -66,7 +66,7 @@
 			  <span class="badge badge--out-of-stock">Out of Stock</span>
 			{%- endif -%}
 
-			<!-- Monogram callout and input — BCM-CC-05 only -->
+			<!-- Monogram callout — products with monogram: true -->
 			{%- if page.monogram -%}
 			  <div class="monogram-callout">
 				<p class="monogram-callout__label">Monogram Available</p>
@@ -75,13 +75,60 @@
 				  <span class="monogram-callout__price">${{ page.monogram_price }}</span>
 				  at checkout. {{ page.monogram_turnaround }}
 				</p>
+
+				<!-- Opt-in checkbox -->
 				<div class="monogram-input-wrap" id="monogram-wrap">
 				  <label class="form-check" for="monogram-opt-in">
 					<input type="checkbox" id="monogram-opt-in" name="monogram-opt-in">
 					Add monogram (+${{ page.monogram_price }})
 				  </label>
-				  <div class="monogram-text-wrap" id="monogram-text-wrap" hidden>
-					<label class="form-label" for="monogram-text">Your initials (up to 3 characters)</label>
+				</div>
+
+				<!-- Style selector — shown when opt-in checked -->
+				<div id="monogram-style-wrap" hidden>
+				  <p class="form-label" style="margin-top: 20px; margin-bottom: 12px;">
+					Choose a stamp size
+				  </p>
+				  <div class="monogram-style-grid">
+					{%- for style in page.monogram_styles -%}
+					  <label class="monogram-style-card" for="monogram-style-{{ style.id }}">
+						<img
+						  class="monogram-style-card__img"
+						  src="{{ style.image_detail }}"
+						  alt="{{ style.label }}"
+						  data-detail="{{ style.image_detail }}"
+						  data-case="{{ style.image_case }}"
+						  id="monogram-style-img-{{ style.id }}"
+						>
+						<button
+						  type="button"
+						  class="monogram-style-card__toggle"
+						  data-target="monogram-style-img-{{ style.id }}"
+						  data-detail="{{ style.image_detail }}"
+						  data-case="{{ style.image_case }}"
+						  aria-label="Toggle view for {{ style.label }}"
+						>
+						  See it on the case ↔
+						</button>
+						<input
+						  type="radio"
+						  name="monogram-style"
+						  id="monogram-style-{{ style.id }}"
+						  value="{{ style.id }}"
+						  data-label="{{ style.label }}"
+						  class="monogram-style-radio"
+						>
+						<span class="monogram-style-card__label">{{ style.label }}</span>
+						<span class="monogram-style-card__desc">{{ style.desc }}</span>
+					  </label>
+					{%- endfor -%}
+				  </div>
+
+				  <!-- Initials input — shown after style selected -->
+				  <div id="monogram-text-wrap" hidden style="margin-top: 20px;">
+					<label class="form-label" for="monogram-text">
+					  Your initials (up to 3 characters)
+					</label>
 					<input
 					  class="form-input monogram-text-input"
 					  type="text"
@@ -94,13 +141,15 @@
 					>
 				  </div>
 				</div>
-			  </div>
+
+			  </div><!-- /.monogram-callout -->
 			{%- endif -%}
 
-			<!-- Add to Cart — wired in Milestone 4 via cart.js -->
+			<!-- Add to Cart -->
 			{%- if page.in_stock -%}
 			  <button
 				class="btn btn-primary btn-add-to-cart"
+				style="margin-top: 24px;"
 				data-product-name="{{ page.name }}"
 				data-product-price="{{ page.price }}"
 				data-product-sku="{{ page.sku }}"
@@ -109,6 +158,7 @@
 				{%- if page.monogram -%}
 				data-product-monogram="true"
 				data-product-monogram-price="{{ page.monogram_price }}"
+				data-product-monogram-style=""
 				{%- endif -%}
 				aria-label="Add {{ page.name }} to cart"
 			  >
@@ -128,7 +178,7 @@
 
 		</div><!-- /.product-detail -->
 
-		<!-- Related products — matched by SKU from front matter -->
+		<!-- Related products -->
 		{%- if page.related -%}
 		  {%- assign related_found = "" | split: "" -%}
 		  {%- for sku in page.related -%}
@@ -171,44 +221,80 @@
 	{% include footer.html %}
 	{% include buttonjs.html %}
 
-	<!-- Monogram opt-in toggle — scoped to product pages with monogram -->
+	<!-- Monogram interaction script — product pages with monogram: true only -->
 	{%- if page.monogram -%}
 	<script>
-	  (function () {
-		var optIn = document.getElementById('monogram-opt-in');
-		var textWrap = document.getElementById('monogram-text-wrap');
-		var textInput = document.getElementById('monogram-text');
-		var displayPrice = document.getElementById('product-display-price');
-		var addBtn = document.querySelector('.btn-add-to-cart');
-		var basePrice = parseFloat(addBtn ? addBtn.dataset.productPrice : 0);
-		var monogramPrice = parseFloat(addBtn ? addBtn.dataset.productMonogramPrice : 0);
+	(function () {
+	  var optIn      = document.getElementById('monogram-opt-in');
+	  var styleWrap  = document.getElementById('monogram-style-wrap');
+	  var textWrap   = document.getElementById('monogram-text-wrap');
+	  var textInput  = document.getElementById('monogram-text');
+	  var displayPrice = document.getElementById('product-display-price');
+	  var addBtn     = document.querySelector('.btn-add-to-cart');
 
-		if (!optIn) return;
+	  if (!optIn || !addBtn) return;
 
-		optIn.addEventListener('change', function () {
-		  if (this.checked) {
-			textWrap.hidden = false;
-			textInput.required = true;
-			textInput.focus();
-			if (displayPrice) {
-			  displayPrice.textContent = '$' + (basePrice + monogramPrice).toFixed(2);
-			}
-		  } else {
-			textWrap.hidden = true;
-			textInput.required = false;
-			textInput.value = '';
-			if (displayPrice) {
-			  displayPrice.textContent = addBtn.dataset.productPrice
-				? '$' + parseFloat(addBtn.dataset.productPrice).toFixed(2)
-				: displayPrice.textContent;
-			}
-		  }
+	  var basePrice     = parseFloat(addBtn.dataset.productPrice);
+	  var monogramPrice = parseFloat(addBtn.dataset.productMonogramPrice || 0);
+
+	  // ── Opt-in toggle ──────────────────────────────────────────────────────
+	  optIn.addEventListener('change', function () {
+		if (this.checked) {
+		  styleWrap.hidden = false;
+		  displayPrice.textContent = '$' + (basePrice + monogramPrice).toFixed(2);
+		} else {
+		  styleWrap.hidden = true;
+		  textWrap.hidden  = true;
+		  textInput.value  = '';
+		  // Clear style selection
+		  document.querySelectorAll('.monogram-style-radio').forEach(function (r) {
+			r.checked = false;
+		  });
+		  document.querySelectorAll('.monogram-style-card').forEach(function (c) {
+			c.classList.remove('is-selected');
+		  });
+		  addBtn.dataset.productMonogramStyle = '';
+		  displayPrice.textContent = '$' + basePrice.toFixed(2);
+		}
+	  });
+
+	  // ── Style card selection ───────────────────────────────────────────────
+	  document.querySelectorAll('.monogram-style-radio').forEach(function (radio) {
+		radio.addEventListener('change', function () {
+		  // Update card selected state
+		  document.querySelectorAll('.monogram-style-card').forEach(function (c) {
+			c.classList.remove('is-selected');
+		  });
+		  radio.closest('.monogram-style-card').classList.add('is-selected');
+
+		  // Store selected style label on button for cart.js to read
+		  addBtn.dataset.productMonogramStyle = radio.dataset.label;
+
+		  // Show initials input
+		  textWrap.hidden = false;
+		  textInput.focus();
 		});
+	  });
 
-		textInput.addEventListener('input', function () {
-		  this.value = this.value.toUpperCase().replace(/[^A-Z]/g, '');
+	  // ── Image toggle (detail ↔ case) ───────────────────────────────────────
+	  document.querySelectorAll('.monogram-style-card__toggle').forEach(function (btn) {
+		var showingCase = false;
+		btn.addEventListener('click', function (e) {
+		  e.preventDefault();
+		  var img = document.getElementById(btn.dataset.target);
+		  if (!img) return;
+		  showingCase = !showingCase;
+		  img.src = showingCase ? btn.dataset.case : btn.dataset.detail;
+		  btn.textContent = showingCase ? 'See the detail ↔' : 'See it on the case ↔';
 		});
-	  })();
+	  });
+
+	  // ── Initials input — uppercase alpha only ─────────────────────────────
+	  textInput.addEventListener('input', function () {
+		this.value = this.value.toUpperCase().replace(/[^A-Z]/g, '');
+	  });
+
+	})();
 	</script>
 	{%- endif -%}
 

@@ -15,3 +15,17 @@ You'll receive a confirmation email shortly. If anything looks off, [get in touc
 In the meantime, if you haven't already — the [Cigar 101](/cigar-101/) page has everything you need to get the most out of a long match.
 
 — Aaron & Lindsay
+
+<script>
+// Clear cart on successful order — this page only loads after payment completes.
+// Runs after cart.js has initialized via buttonjs.html.
+(function () {
+  try {
+	sessionStorage.removeItem('bcm_cart');
+  } catch (e) {}
+  // Also clear via cart API if available
+  if (window.BCM_cart && typeof window.BCM_cart.clearCart === 'function') {
+	window.BCM_cart.clearCart();
+  }
+})();
+</script>

@@ -1,6 +1,6 @@
 ---
 name: "Limited Edition - Leather Cigar Case — 3–4 Count"
-sku: BCM-CC-03
+sku: BCM-CC-03-LE
 price: 129.00
 price_display: "$129.00"
 category: leather-cigar-cases
