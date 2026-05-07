@@ -4,3 +4,6 @@ _site
 .jekyll-metadata
 vendor
 .kt
+_config.dev.yml
+.DS_Store
+.nova/

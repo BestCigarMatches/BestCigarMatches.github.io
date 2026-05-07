@@ -7,6 +7,17 @@
 
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 
+  {%- comment -%}
+    Favicon — files at /assets/img/favicon/ need to be created. Generate from
+    a master 512×512 PNG via realfavicongenerator.net or similar. Required:
+      favicon.ico, favicon-16x16.png, favicon-32x32.png, apple-touch-icon.png (180×180).
+    Until those exist, browsers fall back to a default page-document icon.
+  {%- endcomment -%}
+  <link rel="icon"             type="image/png" sizes="32x32" href="{{ '/assets/img/favicon/favicon-32x32.png' | relative_url }}">
+  <link rel="icon"             type="image/png" sizes="16x16" href="{{ '/assets/img/favicon/favicon-16x16.png' | relative_url }}">
+  <link rel="apple-touch-icon" sizes="180x180"                href="{{ '/assets/img/favicon/apple-touch-icon.png' | relative_url }}">
+  <link rel="shortcut icon"                                    href="{{ '/assets/img/favicon/favicon.ico' | relative_url }}">
+
   {% feed_meta %}
 
   {%- if site.stripe_publishable_key -%}

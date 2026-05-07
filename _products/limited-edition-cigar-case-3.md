@@ -10,10 +10,17 @@ in_stock: true
 exclusive: true
 short_desc: "Limited Edition - Leather cigar case - cut and assembled by hand. Holds three to four cigars. Slim, clean, ready to travel."
 images:
-  - https://bcm-media.b-cdn.net/products/cigar-case-3/cigar-case-3-01.jpg
-  - https://bcm-media.b-cdn.net/products/cigar-case-3/cigar-case-3-02.jpg
-  - https://bcm-media.b-cdn.net/products/cigar-case-3/cigar-case-3-03.jpg
+  - https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-3-le/cigar-case-03-le-01.jpg
+  - https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-3-le/cigar-case-03-le-02.jpg
+  - https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-3-le/cigar-case-03-le-03.jpg
+  - https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-3-le/cigar-case-03-le-04.jpg
+  - https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-3-le/cigar-case-03-le-05.jpg
 stripe_price_id: "price_1TLidN8DbHbx2eMbdWKSN79S"
+# Shipping dims — ESTIMATE, verify with scale + tape measure before launch
+ship_weight_oz: 4
+ship_length_in: 6
+ship_width_in: 3
+ship_height_in: 2
 related:
   - BCM-CC-05
   - BCM-LA-SD
