@@ -85,14 +85,14 @@ Related products are resolved by SKU in `_layouts/product.html` via `where: "sku
 - **Quote YAML front matter values that contain em dashes, commas, or other punctuation.** Jekyll fails silently on parse errors and renders blank pages. Prefer flat front-matter fields over nested lists for the same reason — nested structures have caused silent failures here before.
 - **Don't mix the public-site aesthetic with the admin aesthetic.** The Cockpit/Nerdy-Girl themes and CRT/VT323 elements belong to the admin app only. The public site is "candlelight, not CRT."
 - **Don't add Google Analytics, Meta Pixel, or any tracking pixel.** Site policy is Tinylytics-only, no tracking.
-- **`localhost:4000` cannot complete a real checkout.** Flask CORS is locked to `https://bestcigarmatches.com`. To exercise the full flow end-to-end, deploy to staging — don't loosen CORS in committed code.
+- **`localhost:4000` cannot complete a real checkout.** Flask CORS is locked to `https://bestcigarmatches.com`. End-to-end checkout testing happens in production — see "Production smoke test" in the launch punch list. Don't loosen CORS in committed code; do the test card + immediate refund dance against the real domain instead.
 
 ## Branches & Commits
 
-- `main` — production (GitHub Pages serves from here). No direct commits.
-- `staging` — pre-launch review.
-- `dev` — active development; feature branches merge here first. PR flow is `feature/* → dev → staging → main`.
-- One commit per issue when practical. Auto-close syntax (`Closes #N`) fires only on merge to `main`.
+- `main` — production. GitHub Pages serves from here. The only long-lived branch.
+- `feature/<name>` — short-lived working branches off `main`. Merge back via `git checkout main && git merge --no-ff feature/<name>`, then push, then `git branch -d feature/<name>`. Delete the remote branch too.
+- The previous `feature/* → dev → staging → main` flow was retired 2026-05-07 — single-developer overhead without benefit. If a future contributor joins, revisit.
+- One commit per issue when practical. Auto-close syntax (`Closes #N`) fires on merge to `main`.
 - **Commit messages are written in Han Solo voice.** Example tone: `Punch it. Cart wired, forms live, checkout modal fixed, new product added. Closes #72 #74 #55 #33`. This is a deliberate stylistic choice — match it.
 
 ## Local-Only Knowledge
