@@ -22,7 +22,6 @@ Answers to the questions we hear most. If yours isn't here, [send us a message](
 	<summary class="faq-question">How do I use a long cigar match?</summary>
 	<div class="faq-answer">
 	  <p>Strike away from your body on the striker strip provided. Let the sulfur head burn off for a second or two before bringing the flame to the foot of the cigar — you'll taste the difference. Rotate the cigar slowly as you light, keeping the flame just below the leaf rather than touching it directly. The long burn time means you don't have to rush.</p>
-	  <p>For more detail on the technique, see the <a href="/cigar-101/">Cigar 101</a> page.</p>
 	</div>
   </details>
 

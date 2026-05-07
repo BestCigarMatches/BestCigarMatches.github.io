@@ -4,9 +4,9 @@
 # Site identity
 title: Best Cigar Matches
 product: Best Cigar Matches
-tag-line:
-description:
-email:
+tag-line: "Long-form cigar matches and leather goods, made by hand."
+description: "Best Cigar Matches makes 4-inch hand-finished cedar matches and hand-cut leather cases for cigar smokers who want a real light and a place to put it."
+email: hello@bestcigarmatches.com   # update if a different inbox should receive contact-form copies
 webmaster: Aaron Aiken
 webmaster-url: https://aaronaiken.me/
 url: "https://bestcigarmatches.com"
@@ -17,11 +17,7 @@ baseurl: ""
 # Example: https://tinylytics.app/embed/YOURCODE.js?hits&kudos&countries&uptime
 tinylytics:
 
-# Images — set paths when assets are in place
-primary-img-dark-scheme:
-primary-img-light-scheme:
-footer-img-dark-scheme:
-footer-img-light-scheme:
+# Image alt text (logo image fields removed — using text-based identity, not image)
 img-alt: Best Cigar Matches
 
 # Video — paste Bunny.net or other embed src URL
@@ -29,7 +25,13 @@ main-video:
 
 # Stripe — payment processing
 # stripe_publishable_key: public key, safe to be in HTML. Never put secret key here.
-# stripe_enabled: controls whether Stripe.js loads site-wide. Set false in dev if needed.
+# stripe_enabled: controls whether Stripe.js loads site-wide.
+#
+# This file is the PRODUCTION config. Local dev uses an additional _config.dev.yml
+# (gitignored) that overrides stripe_publishable_key with a pk_test_* key, run via:
+#   bundle exec jekyll serve --config _config.yml,_config.dev.yml
+# When switching to Stripe live mode, change stripe_publishable_key below to the
+# pk_live_* value, and ensure _config.dev.yml still holds the pk_test_* override.
 stripe_publishable_key: "pk_test_51TLhwn8DbHbx2eMbnOo7E3P5f4vVnhJTL7QpvFZbIQiniUAF2HPFlSRcPDijzrmnwyfum7DYiwglm3pXWCGxM0qM00RF08zpEh"
 stripe_enabled: true
 

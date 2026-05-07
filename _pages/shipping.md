@@ -12,11 +12,15 @@ page_ident: SHIPPING & RETURNS
 
 **Shipping**
 
-We ship within the United States only. Shipping is included in the price — no surprises at checkout.
+We ship within the United States only — lower 48 states, ground service. Shipping is included in the price — no surprises at checkout.
 
 Orders ship on Tuesdays via USPS. The cutoff is Monday at midnight (12:00 AM ET). If you order after the cutoff, your order ships the following Tuesday.
 
 You'll receive a confirmation email when your order is placed. Tracking information is provided when your order ships.
+
+**A note on cigar matches**
+
+Cigar matches — including safety matches like ours — are classified as Limited Quantity hazardous materials under federal shipping regulations. We ship them via USPS Ground Advantage only, never by air. That means we can't ship matches to addresses that require air transit: Alaska, Hawaii, US territories, or military APO/FPO addresses. If you're ordering matches alongside leather goods, the whole package goes ground for the same reason. Domestic ground delivery is typically 3–7 business days from ship date.
 
 **Delivery time**
 

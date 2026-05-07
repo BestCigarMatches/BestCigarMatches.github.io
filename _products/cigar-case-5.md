@@ -6,13 +6,21 @@ price_display: "$129.00"
 category: leather-cigar-cases
 page_ident: "THE SHOP · LEATHER CIGAR CASES"
 featured: true
-in_stock: true
+in_stock: false
 short_desc: "Hand-finished leather cigar case. Holds five cigars and a medium Boveda pack. Our best."
 images:
-  - https://bcm-media.b-cdn.net/products/cigar-case-5/cigar-case-5-01.jpg
-  - https://bcm-media.b-cdn.net/products/cigar-case-5/cigar-case-5-02.jpg
-  - https://bcm-media.b-cdn.net/products/cigar-case-5/cigar-case-5-03.jpg
-  - https://bcm-media.b-cdn.net/products/cigar-case-5/cigar-case-5-04.jpg
+  - https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-boveda/cigar-case-boveda-01.jpg
+  - https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-boveda/cigar-case-boveda-02.jpg
+  - https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-boveda/cigar-case-boveda-03.jpg
+  - https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-boveda/cigar-case-boveda-04.jpg
+  - https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-boveda/cigar-case-boveda-05.jpg
+  - https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-boveda/cigar-case-boveda-06.jpg
+  - https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-boveda/cigar-case-boveda-07.jpg
+  - https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-boveda/cigar-case-boveda-08.jpg
+  - https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-boveda/cigar-case-boveda-09.jpg
+  - https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-boveda/cigar-case-boveda-10.jpg
+  - https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-boveda/cigar-case-boveda-11.jpg
+  - https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-boveda/cigar-case-boveda-12.jpg
 monogram: true
 monogram_price: 10
 monogram_turnaround: "Add 2–3 business days to processing time."
@@ -33,18 +41,26 @@ monogram_styles:
   image_detail: "https://bcm-media.b-cdn.net/products/misc/monogram-threeeighths-detail.jpg"
   image_case: "https://bcm-media.b-cdn.net/products/misc/monogram-threeeighths-case.jpg"
 stripe_price_id: ""
+# Shipping dims — ESTIMATE, verify with scale + tape measure before launch
+ship_weight_oz: 5
+ship_length_in: 7
+ship_width_in: 3
+ship_height_in: 2
 related:
   - BCM-CC-03
   - BCM-LA-SD
   - BCM-LA-MP
 ---
 
-Five cigars and a medium Boveda humidification pack — everything you need for the day, in one case. This is the one we are most proud of. The fit is snug enough to protect, loose enough to load and unload without a fight. The leather is finished by hand and will develop a patina over time that no new case can replicate.
+A hand-cut hand-stitched leather cigar case that holds up to 5 cigars (comfortably) in the included medium Boveda humidor bag (with humidification pack), and a slim lighter and cutter. Easy to slip into a bag or just carry along to your cigar event or friend's backyard (or heck, even your own backyard). 
 
-The integrated Boveda slot keeps your cigars at the right humidity on the road. No more dry smokes hours into a trip.
+Add an optional monogram to make it yours. 
+
+These are made using drum-dyed veg-tan leather. I mark and cut by hand, then assemble and stitch by hand. Your optional monogram is stamped by hand. 
+
+<!-- TODO: Aaron — measure finished product (closed dimensions, in inches) and add a Product Dimensions section here before launch. Empty heading removed for now so the page renders clean. -->
 
 **What you get:**
-One hand-finished leather 5-count cigar case. Boveda pack and cigars not included.
+One hand-finished leather cigar case **with** a medium Boveda humidor bag with humidification pack. Color is more on the tan side than brown, and the thread used is cream as opposed to stark white.
 
-**Monogram:**
-Available on this case. Up to 3 characters, stamped by hand. Add $10 at checkout and allow an extra 2–3 business days for processing. This is the one place we slow down on purpose.
+**NOTE** BestCigarMatches.com is not affiliated with Boveda, Inc.
