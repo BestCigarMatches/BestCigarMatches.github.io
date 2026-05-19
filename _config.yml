@@ -32,7 +32,7 @@ main-video:
 #   bundle exec jekyll serve --config _config.yml,_config.dev.yml
 # When switching to Stripe live mode, change stripe_publishable_key below to the
 # pk_live_* value, and ensure _config.dev.yml still holds the pk_test_* override.
-stripe_publishable_key: "pk_test_51TLhwn8DbHbx2eMbnOo7E3P5f4vVnhJTL7QpvFZbIQiniUAF2HPFlSRcPDijzrmnwyfum7DYiwglm3pXWCGxM0qM00RF08zpEh"
+stripe_publishable_key: "pk_live_51TLhwY4ici8Ctjd2WlR52haDPukheIVe9OfRCPaqOBPDpkjfMbvoobic2b1tVo5L93hewS3VQb3OyTgZshVVrNXv00ajSlPSjP"
 stripe_enabled: true
 
 # Flask backend API base URL
