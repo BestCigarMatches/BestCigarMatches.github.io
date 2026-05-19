@@ -145,7 +145,7 @@
 			  </div><!-- /.monogram-callout -->
 			{%- endif -%}
 
-			<!-- Add to Cart -->
+			<!-- Add to Cart / Restock signup -->
 			{%- if page.in_stock -%}
 			  <button
 				class="btn btn-primary btn-add-to-cart"
@@ -165,9 +165,27 @@
 				Add to Cart
 			  </button>
 			{%- else -%}
-			  <button class="btn btn-secondary" disabled aria-disabled="true">
-				Out of Stock
-			  </button>
+			  <div class="restock-notify" data-product-sku="{{ page.sku }}" style="margin-top: 24px;">
+				<p class="restock-notify__heading">
+				  <strong>Out of stock.</strong> Drop your email and we'll let you know
+				  when it's back.
+				</p>
+				<form class="restock-notify__form" novalidate>
+				  <input
+					type="email"
+					required
+					class="form-input restock-notify__email"
+					name="email"
+					placeholder="you@example.com"
+					autocomplete="email"
+					aria-label="Email address for back-in-stock notification"
+				  >
+				  <button type="submit" class="btn btn-primary restock-notify__submit">
+					Notify Me
+				  </button>
+				</form>
+				<p class="restock-notify__status" role="status" aria-live="polite" hidden></p>
+			  </div>
 			{%- endif -%}
 
 			<div class="product-detail__description post-content">

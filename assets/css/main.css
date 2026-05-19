@@ -1912,3 +1912,69 @@ main {
     border-radius: var(--r) var(--r) 0 0;
   }
 }
+
+
+/* ------------------------------------------------------------
+   RESTOCK NOTIFY FORM
+   Out-of-stock product pages render an email-capture form in
+   place of the Add-to-Cart button. Visually muted vs. .btn-primary
+   so it doesn't masquerade as a buy button.
+   ------------------------------------------------------------ */
+.restock-notify {
+  padding: 16px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+}
+
+.restock-notify__heading {
+  margin: 0 0 12px;
+  font-size: 0.95rem;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.restock-notify__form {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+.restock-notify__email {
+  flex: 1 1 200px;
+  min-width: 0;
+  padding: 10px 12px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+}
+
+.restock-notify__email:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: -1px;
+  border-color: transparent;
+}
+
+.restock-notify__submit {
+  flex: 0 0 auto;
+  padding: 10px 22px;
+  font-size: 0.78rem;
+}
+
+.restock-notify__status {
+  margin: 12px 0 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.restock-notify__status--success {
+  color: var(--muted);
+}
+
+.restock-notify__status--error {
+  color: var(--accent);
+}
