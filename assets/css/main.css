@@ -317,7 +317,7 @@ main {
 }
 
 .nav__link--cta {
-  color: var(--text);
+  color: #F5EDD6;               /* parchment — matches .btn-primary, readable on burgundy in both modes */
   background: var(--accent);
   padding: 5px 14px;
   border-radius: var(--r);
