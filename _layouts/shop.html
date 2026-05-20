@@ -39,7 +39,7 @@
 			{%- assign out_of_stock      = site.products | where: "in_stock", false -%}
 			{%- assign sorted_products   = in_stock_featured | concat: in_stock_rest | concat: out_of_stock -%}
 			{%- for product in sorted_products -%}
-			  <article class="product-card" data-category="{{ product.category }}">
+			  <article class="product-card{% unless product.in_stock %} product-card--sold-out{% endunless %}" data-category="{{ product.category }}">
 				{%- if product.images[0] -%}
 				  <a href="{{ product.url | relative_url }}">
 					<img

@@ -1978,3 +1978,36 @@ main {
 .restock-notify__status--error {
   color: var(--accent);
 }
+
+
+/* ------------------------------------------------------------
+   SOLD-OUT PRODUCT CARDS
+   Out-of-stock cards are still browsable (clicking through reaches
+   the restock signup form), but they're visually de-emphasized on
+   the shop grid so in-stock items lead. Hover restores opacity to
+   signal interactivity without re-saturating the image jarringly.
+   ------------------------------------------------------------ */
+.product-card--sold-out .product-card__img {
+  filter: grayscale(0.6);
+  opacity: 0.55;
+  transition: filter var(--ease), opacity var(--ease);
+}
+
+.product-card--sold-out .product-card__category,
+.product-card--sold-out .product-card__name,
+.product-card--sold-out .product-card__desc,
+.product-card--sold-out .product-card__price {
+  opacity: 0.65;
+  transition: opacity var(--ease);
+}
+
+.product-card--sold-out:hover .product-card__img {
+  opacity: 0.85;
+}
+
+.product-card--sold-out:hover .product-card__category,
+.product-card--sold-out:hover .product-card__name,
+.product-card--sold-out:hover .product-card__desc,
+.product-card--sold-out:hover .product-card__price {
+  opacity: 0.9;
+}
