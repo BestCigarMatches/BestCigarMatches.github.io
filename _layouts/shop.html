@@ -30,9 +30,14 @@
 		  </div>
 
 		  <div class="product-grid">
-			{%- assign featured = site.products | where: "featured", true -%}
-			{%- assign rest = site.products | where: "featured", false -%}
-			{%- assign sorted_products = featured | concat: rest -%}
+			{%- comment -%}
+			  Sort order: in-stock featured → in-stock non-featured → out-of-stock.
+			  Within each group, Jekyll's default name-alphabetical from _config.yml.
+			{%- endcomment -%}
+			{%- assign in_stock_featured = site.products | where: "in_stock", true | where: "featured", true -%}
+			{%- assign in_stock_rest     = site.products | where: "in_stock", true | where: "featured", false -%}
+			{%- assign out_of_stock      = site.products | where: "in_stock", false -%}
+			{%- assign sorted_products   = in_stock_featured | concat: in_stock_rest | concat: out_of_stock -%}
 			{%- for product in sorted_products -%}
 			  <article class="product-card" data-category="{{ product.category }}">
 				{%- if product.images[0] -%}
