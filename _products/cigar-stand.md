@@ -21,10 +21,10 @@ images:
   - https://bcm-media.b-cdn.net/products/leather-accessories/cigar-stand/cigar-stand-09.jpg
   - https://bcm-media.b-cdn.net/products/leather-accessories/cigar-stand/cigar-stand-10.jpg
 stripe_price_id: ""
-# Shipping dims — ESTIMATE, verify with scale + tape measure before launch
+# Shipping dims — verified
 ship_weight_oz: 2
-ship_length_in: 4
-ship_width_in: 2
+ship_length_in: 7
+ship_width_in: 5
 ship_height_in: 1
 related:
   - BCM-CC-05

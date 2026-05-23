@@ -13,10 +13,10 @@ images:
 - https://bcm-media.b-cdn.net/products/cigar-matches/cigar-matches-02.jpg
 - https://bcm-media.b-cdn.net/products/cigar-matches/cigar-matches-03.jpg
 stripe_price_id: ""
-# Shipping dims — ESTIMATE, verify with scale + tape measure before launch
-ship_weight_oz: 4
-ship_length_in: 5
-ship_width_in: 2
+# Shipping dims — verified
+ship_weight_oz: 8
+ship_length_in: 11.5
+ship_width_in: 8
 ship_height_in: 1
 related:
   - BCM-M-100

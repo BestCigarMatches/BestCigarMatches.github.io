@@ -12,12 +12,14 @@ Not in a dramatic way — just the slow, quiet frustration of reaching for a mat
 
 So I made better ones.
 
+![aaron whittling matches](https://bcm-media.b-cdn.net/aaron-whittling-matches.jpeg)
+
 Hand-cut with my favorite backsaw, then whittled to shape with my Slojd knife — the same knife I've used for years, the kind of tool that feels right in the hand after a while. The result is a match that's 3× thicker than what you find in a standard box. It won't snap when you strike it. It burns slow and even — up to 60 seconds — long enough to light a cigar properly, without rushing, without a second match.
 
 Our son has been known to pick up his own Slojd knife and help with the finishing. He's twelve, going on thirteen, and already has a better eye for it than he'd probably admit.
 
 ---
-
+![Aaron using a pair of dividers to find the center of a cigar case](https://bcm-media.b-cdn.net/using%20a%20pair%20of%20dividers%20to%20find%20the%20center%20of%20a%20cigar%20case.jpeg)
 The leather goods came first, actually.
 
 For years I made high-quality leather goods for cigar aficionados under the name **A. M. Aiken** — continuing a tradition of handmade leather craft that I started in 2021. Cases, pouches, accessories — all cut and stitched by hand, no machines. It grew faster than I expected, faster than was good for it, and eventually I had to step back. Went back to IT full-time. Took a breath.
@@ -25,6 +27,7 @@ For years I made high-quality leather goods for cigar aficionados under the name
 The matches came out of that quieter season — a happy discovery while I was making things for myself again, at my own pace. Best Cigar Matches continues the A. M. Aiken tradition of handmade leather goods alongside them. The pouches, cases, and accessories you'll find in the shop are made the same way they always were. By hand. No shortcuts.
 
 ---
+![Aaron and Lindsay](https://bcm-media.b-cdn.net/aaron-and-lindsay.jpeg)
 
 My wife Lindsay keeps this operation running. She handles everything behind the scenes — customer support, fulfillment, shipping — and she does it better than I could. Our son helps with pick and pack, and occasionally with the making. It's a family thing.
 

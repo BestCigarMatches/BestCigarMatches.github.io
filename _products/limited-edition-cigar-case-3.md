@@ -16,10 +16,10 @@ images:
   - https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-3-le/cigar-case-03-le-04.jpg
   - https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-3-le/cigar-case-03-le-05.jpg
 stripe_price_id: "price_1TLidN8DbHbx2eMbdWKSN79S"
-# Shipping dims — ESTIMATE, verify with scale + tape measure before launch
-ship_weight_oz: 4
-ship_length_in: 6
-ship_width_in: 3
+# Shipping dims — verified
+ship_weight_oz: 7
+ship_length_in: 11.5
+ship_width_in: 8
 ship_height_in: 2
 related:
   - BCM-CC-05
