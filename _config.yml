@@ -13,9 +13,7 @@ url: "https://bestcigarmatches.com"
 baseurl: ""
 
 # Analytics — Tinylytics only.
-# Paste full embed URL when activating.
-# Example: https://tinylytics.app/embed/YOURCODE.js?hits&kudos&countries&uptime
-tinylytics:
+tinylytics: https://tinylytics.app/embed/XDNFNjsuCVkLQZtRrDQq.js?hits&kudos&countries&uptime
 
 # Image alt text (logo image fields removed — using text-based identity, not image)
 img-alt: Best Cigar Matches
