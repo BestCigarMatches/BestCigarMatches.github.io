@@ -26,9 +26,9 @@ Answers to the questions we hear most. If yours isn't here, [send us a message](
   </details>
 
   <details class="faq-item">
-	<summary class="faq-question">How many matches come in a box?</summary>
+	<summary class="faq-question">How many matches come in a pack?</summary>
 	<div class="faq-answer">
-	  <p>Two sizes: a 50-pack and a 100-pack. Both ship free within the US.</p>
+	  <p>Fifty per pack. Need more? Order two — shipping is included either way.</p>
 	</div>
   </details>
 

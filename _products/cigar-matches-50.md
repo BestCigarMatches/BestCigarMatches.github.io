@@ -19,9 +19,9 @@ ship_length_in: 11.5
 ship_width_in: 8
 ship_height_in: 1
 related:
-  - BCM-M-100
   - BCM-LA-MP
   - BCM-LA-MB
+  - BCM-SL-CL
 ---
 
 Fifty 4-inch cigar matches, hand-finished and ready to work. These are the matches we use ourselves — long enough to get a proper light without burning your fingers, finished to strike clean every time.

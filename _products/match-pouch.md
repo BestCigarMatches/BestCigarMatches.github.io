@@ -22,12 +22,12 @@ ship_height_in: 1
 related:
   - BCM-M-050
   - BCM-LA-MB
-  - BCM-M-100
+  - BCM-LA-SD
 ---
 
 A hand-finished leather pouch sized for cigar matches. Tucks into a jacket pocket, a bag, or sits next to the humidor without taking up much space. The leather will break in and develop character with use — that is the point.
 
-Sold empty. Pair it with the 50-count or 100-count matches and you have everything you need.
+Sold empty. Pair it with a pack of matches and you have everything you need.
 
 **What you get:**
 One hand-finished leather match pouch. Matches sold separately.

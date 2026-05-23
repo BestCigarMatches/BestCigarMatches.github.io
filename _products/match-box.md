@@ -19,12 +19,12 @@ ship_length_in: 5
 ship_width_in: 3
 ship_height_in: 2
 related:
-  - BCM-M-100
-  - BCM-LA-MP
   - BCM-M-050
+  - BCM-LA-MP
+  - BCM-LA-SD
 ---
 
-A hand-finished leather match box built to hold a full 100-count of cigar matches. This is the home base — it lives on the shelf next to the humidor, keeps your matches organized, and looks the part while doing it.
+A hand-finished leather match box built to hold a hundred hand-finished cigar matches — fill it with two 50-packs and you're set for a long while. This is the home base — it lives on the shelf next to the humidor, keeps your matches organized, and looks the part while doing it.
 
 The leather is finished by hand and will develop a patina over time. Sold empty so you can fill it your way.
 

@@ -6,7 +6,7 @@ price_display: "$19.00"
 category: small-leather-goods
 page_ident: "THE SHOP · LEATHER MATCH ACCESSORIES"
 featured: false
-in_stock: false
+in_stock: true
 short_desc: "Hand-finished leather cigar stand. Holds your cigar while you wait. Lays flat when you don't need it."
 images:
   - https://bcm-media.b-cdn.net/products/leather-accessories/cigar-stand/cigar-stand-01.jpg
