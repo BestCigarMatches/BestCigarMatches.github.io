@@ -1,5 +1,5 @@
 ---
-layout: coming-soon
+layout: default
 title: "Best Cigar Matches - Coming Soon"
 description: "Hand-finished cigar matches and leather goods. Launching soon."
 preview_image_1: "https://bcm-media.b-cdn.net/products/cigar-matches/cigar-matches-01.jpg"

@@ -6,7 +6,7 @@ price_display: "$24.00"
 category: leather-match-accessories
 page_ident: "THE SHOP · LEATHER MATCH ACCESSORIES"
 featured: true
-in_stock: false
+in_stock: true
 short_desc: "Hand-finished leather pouch for carrying cigar matches. Built for the pocket, the bag, or the humidor."
 images:
   - https://bcm-media.b-cdn.net/products/cigar-matches/match-pouch/match-pouch-01.jpg

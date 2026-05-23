@@ -14,19 +14,100 @@
 		{{ content }}
 	  </section>
 
+	  {%- comment -%}
+		Featured products on homepage. Order is driven by site.homepage_featured
+		(a SKU list in _config.yml). Out-of-stock SKUs in the list are skipped.
+	  {%- endcomment -%}
+	  {%- if site.homepage_featured -%}
+	  <section class="section section-featured">
+		<div class="section-featured__header">
+		  <p class="hero__kicker">From the collection</p>
+		  <h2>A few favorites</h2>
+		</div>
+		<div class="product-grid">
+		  {%- for sku in site.homepage_featured -%}
+			{%- assign product = site.products | where: "sku", sku | first -%}
+			{%- if product and product.in_stock -%}
+			  <article class="product-card" data-category="{{ product.category }}">
+				{%- if product.images[0] -%}
+				  <a href="{{ product.url | relative_url }}">
+					<img class="product-card__img"
+						 src="{{ product.images[0] }}"
+						 alt="{{ product.name }}"
+						 loading="lazy">
+				  </a>
+				{%- endif -%}
+				<div class="product-card__body">
+				  <p class="product-card__category">{{ product.category | replace: "-", " " | capitalize }}</p>
+				  <h3 class="product-card__name">
+					<a href="{{ product.url | relative_url }}">{{ product.name }}</a>
+				  </h3>
+				  {%- if product.short_desc -%}
+					<p class="product-card__desc">{{ product.short_desc }}</p>
+				  {%- endif -%}
+				  <p class="product-card__price">{{ product.price_display }}</p>
+				  <div class="product-card__footer">
+					<a class="btn btn-primary btn--sm" href="{{ product.url | relative_url }}">View</a>
+					<span class="badge badge--in-stock">In Stock</span>
+				  </div>
+				</div>
+			  </article>
+			{%- endif -%}
+		  {%- endfor -%}
+		</div>
+		<div class="section-featured__more">
+		  <a class="btn btn-secondary" href="{{ '/shop/' | relative_url }}">Shop everything &rarr;</a>
+		</div>
+	  </section>
+	  {%- endif -%}
+
+	  {%- comment -%}
+		Story / The bench. Prose + image only render when populated in _config.yml.
+		Craft callouts always render — they're brand-stable copy.
+	  {%- endcomment -%}
+	  <section class="section section-story">
+		{%- if site.story_headline -%}
+		  <div class="section-story__inner">
+			<div class="section-story__prose">
+			  <p class="hero__kicker">The bench</p>
+			  <h2>{{ site.story_headline }}</h2>
+			  {%- if site.story_paragraph -%}
+				<p>{{ site.story_paragraph }}</p>
+			  {%- endif -%}
+			</div>
+			{%- if site.bench_image -%}
+			  <div class="section-story__image">
+				<img src="{{ site.bench_image }}"
+					 alt="{{ site.bench_image_alt | default: 'At the bench' }}"
+					 loading="lazy">
+			  </div>
+			{%- endif -%}
+		  </div>
+		{%- endif -%}
+
+		<ul class="craft-callouts">
+		  <li class="craft-callout">
+			<strong>Hand-carved</strong>
+			<span>Every match shaped one at a time, finished with a Slojd knife.</span>
+		  </li>
+		  <li class="craft-callout">
+			<strong>Hand-stitched</strong>
+			<span>Waxed thread, traditional saddle stitch, built to outlast you.</span>
+		  </li>
+		</ul>
+	  </section>
+
+	  {%- if site.main-video -%}
 	  <section class="section section-video" id="video">
 		{% include video.html %}
 	  </section>
+	  {%- endif -%}
 
 	  <section class="section section-subscribe">
 		<p class="hero__kicker">Stay in the loop</p>
 		<h2>New products. Restocks. The occasional dispatch.</h2>
 		<p>No spam. Unsubscribe anytime.</p>
 		<a class="btn btn-secondary" href="{{ site.url }}/subscribe/">Subscribe</a>
-	  </section>
-
-	  <section class="section section-purchase" id="purchase">
-		{% include purchase.html %}
 	  </section>
 
 	</main>

@@ -2011,3 +2011,96 @@ main {
 .product-card--sold-out:hover .product-card__price {
   opacity: 0.9;
 }
+
+
+/* ------------------------------------------------------------
+   HOMEPAGE — FEATURED PRODUCTS
+   ------------------------------------------------------------ */
+.section-featured__header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.section-featured__header h2 {
+  margin-top: 4px;
+}
+
+.section-featured__more {
+  text-align: center;
+  margin-top: 40px;
+}
+
+
+/* ------------------------------------------------------------
+   HOMEPAGE — STORY / THE BENCH
+   Prose + image grid on desktop, stacked on mobile. Craft callouts
+   render below in a two-column row regardless of whether prose is set.
+   ------------------------------------------------------------ */
+.section-story__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto 48px;
+}
+
+@media (max-width: 720px) {
+  .section-story__inner {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+.section-story__prose h2 {
+  margin: 4px 0 16px;
+}
+
+.section-story__prose p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.section-story__image img {
+  border-radius: var(--r);
+  box-shadow: var(--shadow-md);
+  width: 100%;
+  height: auto;
+}
+
+.craft-callouts {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+@media (max-width: 540px) {
+  .craft-callouts {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+.craft-callout {
+  text-align: center;
+}
+
+.craft-callout strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.craft-callout span {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.55;
+}

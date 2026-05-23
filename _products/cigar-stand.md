@@ -32,6 +32,8 @@ related:
   - BCM-LA-MP
 ---
 
+**NOTE: ONLY THE "TAN" CIGAR STAND IS CURRENTLY AVAILABLE.**
+
 A hand-finished leather cigar stand designed to hold your cigar steady while you step away. When you are done, it lays flat — slim enough to tuck into a cigar case or leave on the desk without it being in the way.
 
 Simple, useful, built to last.

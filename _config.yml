@@ -20,8 +20,24 @@ tinylytics:
 # Image alt text (logo image fields removed — using text-based identity, not image)
 img-alt: Best Cigar Matches
 
-# Video — paste Bunny.net or other embed src URL
+# Video — paste Bunny.net or other embed src URL. Section on the homepage
+# auto-hides when empty.
 main-video:
+
+# Homepage featured products — SKU list, order preserved. OOS SKUs in this
+# list are silently skipped. Drop a SKU from the list to remove from the
+# homepage without touching the product's own front matter.
+homepage_featured:
+  - BCM-M-050
+  - BCM-CC-03-LE
+  - BCM-CC-03-SS
+
+# Homepage "Story / The bench" section. Section auto-hides the prose+image
+# block when story_headline is empty — the craft callouts still render below.
+story_headline:
+story_paragraph:
+bench_image:
+bench_image_alt:
 
 # Stripe — payment processing
 # stripe_publishable_key: public key, safe to be in HTML. Never put secret key here.
