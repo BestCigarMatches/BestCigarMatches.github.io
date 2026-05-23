@@ -34,10 +34,10 @@ homepage_featured:
 
 # Homepage "Story / The bench" section. Section auto-hides the prose+image
 # block when story_headline is empty — the craft callouts still render below.
-story_headline:
-story_paragraph:
-bench_image:
-bench_image_alt:
+story_headline: from a small workshop in Harrisburg, Pennsylvania
+story_paragraph: A cigar deserves a proper light. Standard cigar matches snap most times and a cigar requires 4 or so to get it right. Our matches are 4 inches long, three times thicker than standard, and only one is required to light your cigar. Each one is hand-carved with Aaron's favorite Slojd knife. Our leather goods receive the same slow treatment — cut, assembled, and stitched by hand. Previously under the brand name of A. M. Aiken, now a quieter operation. Aaron makes the stuff, Lindsay picks/packs/ships, answers emails, and keeps things running smoothly.
+bench_image: https://bcm-media.b-cdn.net/aaron-at-the-bench.jpg
+bench_image_alt: Aaron at the bench
 
 # Stripe — payment processing
 # stripe_publishable_key: public key, safe to be in HTML. Never put secret key here.
