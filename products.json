@@ -1,0 +1,28 @@
+---
+layout: null
+permalink: /products.json
+---
+{
+  "generated_at": {{ site.time | date_to_xmlschema | jsonify }},
+  "site_url": {{ site.url | jsonify }},
+  "products": [
+    {%- for product in site.products -%}
+    {
+      "sku":             {{ product.sku            | jsonify }},
+      "name":            {{ product.name           | jsonify }},
+      "slug":            {{ product.url | replace: "/shop/", "" | replace: "/", "" | jsonify }},
+      "category":        {{ product.category       | jsonify }},
+      "price_cents":     {{ product.price | times: 100 | round }},
+      "price_display":   {{ product.price_display  | jsonify }},
+      "in_stock":        {{ product.in_stock       | default: false | jsonify }},
+      "featured":        {{ product.featured       | default: false | jsonify }},
+      "exclusive":       {{ product.exclusive      | default: false | jsonify }},
+      "monogram":        {{ product.monogram       | default: false | jsonify }},
+      "ship_weight_oz":  {{ product.ship_weight_oz | default: 0 }},
+      "ship_length_in":  {{ product.ship_length_in | default: 0 }},
+      "ship_width_in":   {{ product.ship_width_in  | default: 0 }},
+      "ship_height_in":  {{ product.ship_height_in | default: 0 }}
+    }{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ]
+}
