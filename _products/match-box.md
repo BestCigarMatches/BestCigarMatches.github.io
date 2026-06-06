@@ -22,7 +22,7 @@ variants:
     sku_suffix: BRN
     image_prefix: https://bcm-media.b-cdn.net/products/cigar-matches/match-box/brown/match-box-brown
     image_count: 1
-    in_stock: true
+    in_stock: false
 stripe_price_id: ""
 # Shipping dims — ESTIMATE, verify with scale + tape measure before launch
 ship_weight_oz: 6
