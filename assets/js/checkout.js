@@ -151,6 +151,13 @@
 
     elements = stripe.elements({
       clientSecret: clientSecret,
+      // Pre-seed billing email so Link can recognize returning customers
+      // and pre-fill the Payment Element.
+      defaultValues: {
+        billingDetails: {
+          email: customerInfo && customerInfo.email ? customerInfo.email : ''
+        }
+      },
       appearance: {
         theme: 'flat',
         variables: {
