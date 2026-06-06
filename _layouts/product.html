@@ -404,7 +404,18 @@
 		  else if (parentImages.length) addBtn.dataset.productImg = parentImages[0];
 		}
 		if (restockContainer) {
+		  var prevSku = restockContainer.getAttribute('data-product-sku');
 		  restockContainer.setAttribute('data-product-sku', v.sku);
+		  // SKU changed → reset the form so the user explicitly resubscribes
+		  // for the new color rather than seeing the prior success state.
+		  if (prevSku !== v.sku) {
+			var form      = restockContainer.querySelector('.restock-notify__form');
+			var status    = restockContainer.querySelector('.restock-notify__status');
+			var submitBtn = restockContainer.querySelector('.restock-notify__submit');
+			if (form)      form.style.display = '';
+			if (status)   { status.hidden = true; status.textContent = ''; status.classList.remove('restock-notify__status--success', 'restock-notify__status--error'); }
+			if (submitBtn){ submitBtn.disabled = false; submitBtn.textContent = 'Notify Me'; }
+		  }
 		}
 
 		document.querySelectorAll('.variant-picker__card').forEach(function (c) {
