@@ -32,18 +32,37 @@
 				alt="{{ page.name }}"
 				id="product-img-main"
 			  >
-			  {%- if page.images.size > 1 -%}
-				<div class="product-detail__thumbs">
-				  {%- for img in page.images -%}
-					<img
-					  class="product-detail__thumb"
-					  src="{{ img }}"
-					  alt="{{ page.name }} — image {{ forloop.index }}"
-					  loading="lazy"
-					>
+			  <div class="product-detail__thumbs">
+				{%- for img in page.images -%}
+				  <button
+					type="button"
+					class="product-detail__thumb{% if forloop.first %} is-active{% endif %}"
+					data-src="{{ img }}"
+					aria-label="View image {{ forloop.index }}"
+				  >
+					<img src="{{ img }}" alt="{{ page.name }} — image {{ forloop.index }}" loading="lazy">
+				  </button>
+				{%- endfor -%}
+				{%- if page.variants -%}
+				  {%- for v in page.variants -%}
+					{%- if v.image_count and v.image_count > 0 -%}
+					  {%- for i in (1..v.image_count) -%}
+						{%- assign nn = i | prepend: "00" | slice: -2, 2 -%}
+						{%- assign vurl = v.image_prefix | append: "-" | append: nn | append: ".jpg" -%}
+						<button
+						  type="button"
+						  class="product-detail__thumb"
+						  data-src="{{ vurl }}"
+						  data-variant-suffix="{{ v.sku_suffix }}"
+						  aria-label="View {{ v.color }} image {{ forloop.index }}"
+						>
+						  <img src="{{ vurl }}" alt="{{ page.name }} — {{ v.color }} — image {{ forloop.index }}" loading="lazy">
+						</button>
+					  {%- endfor -%}
+					{%- endif -%}
 				  {%- endfor -%}
-				</div>
-			  {%- endif -%}
+				{%- endif -%}
+			  </div>
 			{%- else -%}
 			  <div class="product-detail__img-placeholder">
 				<p class="text-muted label">Image coming soon</p>
@@ -60,10 +79,39 @@
 
 			<p class="product-detail__price" id="product-display-price">{{ page.price_display }}</p>
 
-			{%- if page.in_stock -%}
-			  <span class="badge badge--in-stock">In Stock</span>
+			{%- if page.variants -%}
+			  <span class="badge badge--in-stock" id="badge-in-stock" hidden>In Stock</span>
+			  <span class="badge badge--out-of-stock" id="badge-oos" hidden>Out of Stock</span>
+
+			  <div class="variant-picker" style="margin-top: 20px;">
+				<p class="form-label" style="margin-bottom: 12px;">Color</p>
+				<div class="variant-picker__grid">
+				  {%- for v in page.variants -%}
+					<label class="variant-picker__card" for="variant-{{ v.sku_suffix }}">
+					  <input
+						type="radio"
+						name="variant"
+						id="variant-{{ v.sku_suffix }}"
+						value="{{ v.sku_suffix }}"
+						data-color="{{ v.color }}"
+						data-sku-suffix="{{ v.sku_suffix }}"
+						data-in-stock="{{ v.in_stock | default: false }}"
+						class="variant-radio"
+					  >
+					  <span class="variant-picker__label">{{ v.color }}</span>
+					  {%- unless v.in_stock -%}
+						<span class="variant-picker__oos">Out of stock</span>
+					  {%- endunless -%}
+					</label>
+				  {%- endfor -%}
+				</div>
+			  </div>
 			{%- else -%}
-			  <span class="badge badge--out-of-stock">Out of Stock</span>
+			  {%- if page.in_stock -%}
+				<span class="badge badge--in-stock">In Stock</span>
+			  {%- else -%}
+				<span class="badge badge--out-of-stock">Out of Stock</span>
+			  {%- endif -%}
 			{%- endif -%}
 
 			<!-- Monogram callout — products with monogram: true -->
@@ -146,7 +194,51 @@
 			{%- endif -%}
 
 			<!-- Add to Cart / Restock signup -->
-			{%- if page.in_stock -%}
+			{%- if page.variants -%}
+			  {%- comment %} JS reveals the right wrap once a color is picked. {% endcomment -%}
+			  <p id="variant-prompt" class="text-muted" style="margin-top: 24px;">Choose a color to continue.</p>
+			  <div id="variant-buy-wrap" hidden style="margin-top: 24px;">
+				<button
+				  class="btn btn-primary btn-add-to-cart"
+				  data-product-name="{{ page.name }}"
+				  data-product-price="{{ page.price }}"
+				  data-product-sku="{{ page.sku }}"
+				  data-product-img="{{ page.images[0] }}"
+				  data-product-exclusive="{{ page.exclusive | default: false }}"
+				  {%- if page.monogram -%}
+				  data-product-monogram="true"
+				  data-product-monogram-price="{{ page.monogram_price }}"
+				  data-product-monogram-style=""
+				  {%- endif -%}
+				  aria-label="Add {{ page.name }} to cart"
+				>
+				  Add to Cart
+				</button>
+			  </div>
+			  <div id="variant-restock-wrap" hidden style="margin-top: 24px;">
+				<div class="restock-notify" data-product-sku="{{ page.sku }}">
+				  <p class="restock-notify__heading">
+					<strong>Out of stock.</strong> Drop your email and we'll let you know
+					when it's back.
+				  </p>
+				  <form class="restock-notify__form" novalidate>
+					<input
+					  type="email"
+					  required
+					  class="form-input restock-notify__email"
+					  name="email"
+					  placeholder="you@example.com"
+					  autocomplete="email"
+					  aria-label="Email address for back-in-stock notification"
+					>
+					<button type="submit" class="btn btn-primary restock-notify__submit">
+					  Notify Me
+					</button>
+				  </form>
+				  <p class="restock-notify__status" role="status" aria-live="polite" hidden></p>
+				</div>
+			  </div>
+			{%- elsif page.in_stock -%}
 			  <button
 				class="btn btn-primary btn-add-to-cart"
 				style="margin-top: 24px;"
@@ -239,6 +331,119 @@
 
 	{% include footer.html %}
 	{% include buttonjs.html %}
+
+	<!-- Variant (color) interaction script — product pages with variants only -->
+	{%- if page.variants -%}
+	<script>
+	(function () {
+	  var parentName   = {{ page.name | jsonify }};
+	  var parentImages = [
+		{%- for img in page.images -%}
+		{{ img | jsonify }}{%- unless forloop.last -%},{%- endunless -%}
+		{%- endfor -%}
+	  ];
+
+	  var variants = {
+		{%- for v in page.variants -%}
+		{{ v.sku_suffix | jsonify }}: {
+		  color: {{ v.color | jsonify }},
+		  sku: {{ page.sku | append: "-" | append: v.sku_suffix | jsonify }},
+		  inStock: {{ v.in_stock | default: false | jsonify }},
+		  images: [
+			{%- if v.image_count and v.image_count > 0 -%}
+			  {%- for i in (1..v.image_count) -%}
+				{%- assign nn = i | prepend: "00" | slice: -2, 2 -%}
+				{{ v.image_prefix | append: "-" | append: nn | append: ".jpg" | jsonify }}{%- unless forloop.last -%},{%- endunless -%}
+			  {%- endfor -%}
+			{%- endif -%}
+		  ]
+		}{%- unless forloop.last -%},{%- endunless -%}
+		{%- endfor -%}
+	  };
+
+	  var mainImg          = document.getElementById('product-img-main');
+	  var badgeIn          = document.getElementById('badge-in-stock');
+	  var badgeOut         = document.getElementById('badge-oos');
+	  var prompt           = document.getElementById('variant-prompt');
+	  var buyWrap          = document.getElementById('variant-buy-wrap');
+	  var restockWrap      = document.getElementById('variant-restock-wrap');
+	  var addBtn           = buyWrap ? buyWrap.querySelector('.btn-add-to-cart') : null;
+	  var restockContainer = restockWrap ? restockWrap.querySelector('.restock-notify') : null;
+	  var radios           = document.querySelectorAll('.variant-radio');
+	  var thumbs           = document.querySelectorAll('.product-detail__thumb');
+
+	  function setMainImage(src, altText) {
+		if (!mainImg || !src) return;
+		mainImg.src = src;
+		if (altText) mainImg.alt = altText;
+		thumbs.forEach(function (t) {
+		  t.classList.toggle('is-active', t.dataset.src === src);
+		});
+	  }
+
+	  function applyVariant(suffix) {
+		var v = variants[suffix];
+		if (!v) return;
+
+		// Jump the main image to this variant's first shot — but only if the
+		// variant has its own photos. Parent thumbs stay put either way.
+		if (v.images.length) {
+		  setMainImage(v.images[0], parentName + ' — ' + v.color);
+		}
+
+		if (prompt)      prompt.hidden      = true;
+		if (badgeIn)     badgeIn.hidden     = !v.inStock;
+		if (badgeOut)    badgeOut.hidden    = v.inStock;
+		if (buyWrap)     buyWrap.hidden     = !v.inStock;
+		if (restockWrap) restockWrap.hidden = v.inStock;
+
+		if (addBtn) {
+		  addBtn.dataset.productSku  = v.sku;
+		  addBtn.dataset.productName = parentName + ' — ' + v.color;
+		  if (v.images.length) addBtn.dataset.productImg = v.images[0];
+		  else if (parentImages.length) addBtn.dataset.productImg = parentImages[0];
+		}
+		if (restockContainer) {
+		  restockContainer.setAttribute('data-product-sku', v.sku);
+		}
+
+		document.querySelectorAll('.variant-picker__card').forEach(function (c) {
+		  c.classList.remove('is-selected');
+		});
+		var selRadio = document.getElementById('variant-' + suffix);
+		if (selRadio) selRadio.closest('.variant-picker__card').classList.add('is-selected');
+	  }
+
+	  radios.forEach(function (radio) {
+		radio.addEventListener('change', function () {
+		  applyVariant(radio.dataset.skuSuffix);
+		});
+	  });
+	})();
+	</script>
+	{%- endif -%}
+
+	<!-- Thumbnail click handler — runs on every product page with thumbs -->
+	<script>
+	(function () {
+	  var mainImg = document.getElementById('product-img-main');
+	  var thumbs  = document.querySelectorAll('.product-detail__thumb');
+	  if (!mainImg || !thumbs.length) return;
+
+	  thumbs.forEach(function (thumb) {
+		thumb.addEventListener('click', function () {
+		  var src = thumb.dataset.src;
+		  if (!src) return;
+		  mainImg.src = src;
+		  var innerImg = thumb.querySelector('img');
+		  if (innerImg && innerImg.alt) mainImg.alt = innerImg.alt;
+		  thumbs.forEach(function (t) {
+			t.classList.toggle('is-active', t === thumb);
+		  });
+		});
+	  });
+	})();
+	</script>
 
 	<!-- Monogram interaction script — product pages with monogram: true only -->
 	{%- if page.monogram -%}

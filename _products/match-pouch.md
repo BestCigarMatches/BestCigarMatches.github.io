@@ -10,9 +10,19 @@ in_stock: false
 short_desc: "Hand-finished leather pouch for carrying cigar matches. Built for the pocket, the bag, or the humidor."
 images:
   - https://bcm-media.b-cdn.net/products/cigar-matches/match-pouch/match-pouch-01.jpg
-  - https://bcm-media.b-cdn.net/products/cigar-matches/match-pouch/match-pouch-02.jpg
   - https://bcm-media.b-cdn.net/products/cigar-matches/match-pouch/match-pouch-03.jpg
   - https://bcm-media.b-cdn.net/products/cigar-matches/match-pouch/match-pouch-04.jpg
+variants:
+  - color: Tan
+    sku_suffix: TAN
+    image_prefix: https://bcm-media.b-cdn.net/products/cigar-matches/match-pouch/tan/match-pouch-tan
+    image_count: 1
+    in_stock: false
+  - color: Brown
+    sku_suffix: BRN
+    image_prefix: https://bcm-media.b-cdn.net/products/cigar-matches/match-pouch/brown/match-pouch-brown
+    image_count: 1
+    in_stock: true
 stripe_price_id: ""
 # Shipping dims — verified
 ship_weight_oz: 3

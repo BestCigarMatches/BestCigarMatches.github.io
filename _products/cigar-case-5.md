@@ -15,12 +15,9 @@ images:
   - https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-boveda/cigar-case-boveda-04.jpg
   - https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-boveda/cigar-case-boveda-05.jpg
   - https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-boveda/cigar-case-boveda-06.jpg
-  - https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-boveda/cigar-case-boveda-07.jpg
-  - https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-boveda/cigar-case-boveda-08.jpg
   - https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-boveda/cigar-case-boveda-09.jpg
   - https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-boveda/cigar-case-boveda-10.jpg
   - https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-boveda/cigar-case-boveda-11.jpg
-  - https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-boveda/cigar-case-boveda-12.jpg
 monogram: true
 monogram_price: 10
 monogram_turnaround: "Add 2–3 business days to processing time."
@@ -40,6 +37,17 @@ monogram_styles:
   desc: "Bold and traditional. Makes a statement."
   image_detail: "https://bcm-media.b-cdn.net/products/misc/monogram-threeeighths-detail.jpg"
   image_case: "https://bcm-media.b-cdn.net/products/misc/monogram-threeeighths-case.jpg"
+variants:
+  - color: Tan
+    sku_suffix: TAN
+    image_prefix: https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-boveda/tan/cigar-case-boveda-tan
+    image_count: 2
+    in_stock: false
+  - color: Brown
+    sku_suffix: BRN
+    image_prefix: https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-boveda/brown/cigar-case-boveda-brown
+    image_count: 3
+    in_stock: false
 stripe_price_id: ""
 # Shipping dims — ESTIMATE, verify with scale + tape measure before launch
 ship_weight_oz: 5
@@ -61,6 +69,6 @@ These are made using drum-dyed veg-tan leather. I mark and cut by hand, then ass
 <!-- TODO: Aaron — measure finished product (closed dimensions, in inches) and add a Product Dimensions section here before launch. Empty heading removed for now so the page renders clean. -->
 
 **What you get:**
-One hand-finished leather cigar case **with** a medium Boveda humidor bag with humidification pack. Color is more on the tan side than brown, and the thread used is cream as opposed to stark white.
+One hand-finished leather cigar case in the color of your choice, **with** a medium Boveda humidor bag with humidification pack. Stitching is cream — not stark white.
 
 **NOTE** BestCigarMatches.com is not affiliated with Boveda, Inc.

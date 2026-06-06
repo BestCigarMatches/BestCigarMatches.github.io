@@ -9,9 +9,20 @@ featured: true
 in_stock: false
 short_desc: "Hand-finished leather match box. Holds 100 cigar matches. Lives on the shelf next to the humidor."
 images:
-  - https://bcm-media.b-cdn.net/products/cigar-matches/match-box/match-box-01.jpg
+  - https://bcm-media.b-cdn.net/products/cigar-matches/match-box/tan/match-box-tan-01.jpg
   - https://bcm-media.b-cdn.net/products/cigar-matches/match-box/match-box-02.jpg
 
+variants:
+  - color: Tan
+    sku_suffix: TAN
+    image_prefix: https://bcm-media.b-cdn.net/products/cigar-matches/match-box/tan/match-box-tan
+    image_count: 1
+    in_stock: false
+  - color: Brown
+    sku_suffix: BRN
+    image_prefix: https://bcm-media.b-cdn.net/products/cigar-matches/match-box/brown/match-box-brown
+    image_count: 1
+    in_stock: true
 stripe_price_id: ""
 # Shipping dims — ESTIMATE, verify with scale + tape measure before launch
 ship_weight_oz: 6

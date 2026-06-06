@@ -378,28 +378,12 @@
     });
   }
 
-  // ─── Thumb gallery ────────────────────────────────────────────────────────
-
-  function wireThumbGallery() {
-    var thumbs  = document.querySelectorAll('.product-detail__thumb');
-    var mainImg = document.getElementById('product-img-main');
-    if (!mainImg || !thumbs.length) return;
-    thumbs.forEach(function (thumb) {
-      thumb.addEventListener('click', function () {
-        mainImg.src = thumb.src;
-        thumbs.forEach(function (t) { t.style.opacity = '0.75'; });
-        thumb.style.opacity = '1';
-      });
-    });
-  }
-
   // ─── Init ─────────────────────────────────────────────────────────────────
 
   function init() {
     loadCart();
     renderCart();
     wireAddToCartButtons();
-    wireThumbGallery();
 
     var toggleBtn = document.getElementById('cart-toggle');
     if (toggleBtn) {

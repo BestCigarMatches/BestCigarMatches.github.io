@@ -13,8 +13,6 @@ images:
   - https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-3/cigar-case-03-01.jpg
   - https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-3/cigar-case-03-02.jpg
   - https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-3/cigar-case-03-03.jpg
-  - https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-3/cigar-case-03-04.jpg
-  - https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-3/cigar-case-03-05.jpg
   - https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-3/cigar-case-03-06.jpg
   - https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-3/cigar-case-03-07.jpg
   - https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-3/cigar-case-03-08.jpg
@@ -39,6 +37,17 @@ monogram_styles:
   desc: "Bold and traditional. Makes a statement."
   image_detail: "https://bcm-media.b-cdn.net/products/misc/monogram-threeeighths-detail.jpg"
   image_case: "https://bcm-media.b-cdn.net/products/misc/monogram-threeeighths-case.jpg"
+variants:
+  - color: Tan
+    sku_suffix: TAN
+    image_prefix: https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-3/tan/cigar-case-03-tan
+    image_count: 2
+    in_stock: false
+  - color: Brown
+    sku_suffix: BRN
+    image_prefix: https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-3/brown/cigar-case-03-brown
+    image_count: 2
+    in_stock: true
 stripe_price_id: ""
 # Shipping dims — ESTIMATE, verify with scale + tape measure before launch
 ship_weight_oz: 4
@@ -60,7 +69,7 @@ These are made using drum-dyed veg-tan leather. I mark and cut by hand, then ass
 <!-- TODO: Aaron — measure finished product (closed dimensions, in inches) and add a Product Dimensions section here before launch. Empty heading removed for now so the page renders clean. -->
 
 **What you get:**
-One hand-finished leather cigar case. Color is more on the tan side than brown, and the thread used is cream as opposed to stark white.
+One hand-finished leather cigar case in the color of your choice. Stitching is cream — not stark white.
 
 **Need more room?**
 The [5-count case](/shop/cigar-case-5) holds five cigars and a medium Boveda humidification pack — and is available with a monogram.

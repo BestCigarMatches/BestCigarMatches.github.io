@@ -33,13 +33,35 @@
 			{%- comment -%}
 			  Sort order: in-stock featured → in-stock non-featured → out-of-stock.
 			  Within each group, Jekyll's default name-alphabetical from _config.yml.
+			  For variant products, effective stock = OR of variant in_stock.
 			{%- endcomment -%}
-			{%- assign in_stock_featured = site.products | where: "in_stock", true | where: "featured", true -%}
-			{%- assign in_stock_rest     = site.products | where: "in_stock", true | where: "featured", false -%}
-			{%- assign out_of_stock      = site.products | where: "in_stock", false -%}
-			{%- assign sorted_products   = in_stock_featured | concat: in_stock_rest | concat: out_of_stock -%}
+			{%- assign featured_in_stock = "" | split: "" -%}
+			{%- assign rest_in_stock     = "" | split: "" -%}
+			{%- assign out_of_stock      = "" | split: "" -%}
+			{%- for product in site.products -%}
+			  {%- assign effective_in_stock = product.in_stock -%}
+			  {%- if product.variants -%}
+				{%- assign in_stock_v = product.variants | where: "in_stock", true | size -%}
+				{%- if in_stock_v > 0 -%}{%- assign effective_in_stock = true -%}{%- else -%}{%- assign effective_in_stock = false -%}{%- endif -%}
+			  {%- endif -%}
+			  {%- if effective_in_stock -%}
+				{%- if product.featured -%}
+				  {%- assign featured_in_stock = featured_in_stock | push: product -%}
+				{%- else -%}
+				  {%- assign rest_in_stock = rest_in_stock | push: product -%}
+				{%- endif -%}
+			  {%- else -%}
+				{%- assign out_of_stock = out_of_stock | push: product -%}
+			  {%- endif -%}
+			{%- endfor -%}
+			{%- assign sorted_products = featured_in_stock | concat: rest_in_stock | concat: out_of_stock -%}
 			{%- for product in sorted_products -%}
-			  <article class="product-card{% unless product.in_stock %} product-card--sold-out{% endunless %}" data-category="{{ product.category }}">
+			  {%- assign effective_in_stock = product.in_stock -%}
+			  {%- if product.variants -%}
+				{%- assign in_stock_v = product.variants | where: "in_stock", true | size -%}
+				{%- if in_stock_v > 0 -%}{%- assign effective_in_stock = true -%}{%- else -%}{%- assign effective_in_stock = false -%}{%- endif -%}
+			  {%- endif -%}
+			  <article class="product-card{% unless effective_in_stock %} product-card--sold-out{% endunless %}" data-category="{{ product.category }}">
 				{%- if product.images[0] -%}
 				  <a href="{{ product.url | relative_url }}">
 					<img
@@ -61,7 +83,7 @@
 				  <p class="product-card__price">{{ product.price_display }}</p>
 				  <div class="product-card__footer">
 					<a class="btn btn-primary btn--sm" href="{{ product.url | relative_url }}">View</a>
-					{%- if product.in_stock -%}
+					{%- if effective_in_stock -%}
 					  <span class="badge badge--in-stock">In Stock</span>
 					{%- else -%}
 					  <span class="badge badge--out-of-stock">Out of Stock</span>

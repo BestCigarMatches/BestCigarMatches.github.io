@@ -6,11 +6,37 @@ permalink: /products.json
   "generated_at": {{ site.time | date_to_xmlschema | jsonify }},
   "site_url": {{ site.url | jsonify }},
   "products": [
+    {%- assign first = true -%}
     {%- for product in site.products -%}
+    {%- assign slug = product.url | replace: "/shop/", "" | replace: "/", "" -%}
+    {%- if product.variants -%}
+      {%- for variant in product.variants -%}
+        {%- unless first %},{% endunless -%}{%- assign first = false -%}
+    {
+      "sku":             {{ product.sku            | append: "-" | append: variant.sku_suffix | jsonify }},
+      "name":            {{ product.name           | append: " — " | append: variant.color | jsonify }},
+      "slug":            {{ slug                   | jsonify }},
+      "category":        {{ product.category       | jsonify }},
+      "price_cents":     {{ product.price | times: 100 | round }},
+      "price_display":   {{ product.price_display  | jsonify }},
+      "in_stock":        {{ variant.in_stock       | default: false | jsonify }},
+      "featured":        {{ product.featured       | default: false | jsonify }},
+      "exclusive":       {{ product.exclusive      | default: false | jsonify }},
+      "monogram":        {{ product.monogram       | default: false | jsonify }},
+      "ship_weight_oz":  {{ product.ship_weight_oz | default: 0 }},
+      "ship_length_in":  {{ product.ship_length_in | default: 0 }},
+      "ship_width_in":   {{ product.ship_width_in  | default: 0 }},
+      "ship_height_in":  {{ product.ship_height_in | default: 0 }},
+      "variant_of":      {{ product.sku            | jsonify }},
+      "variant_color":   {{ variant.color          | jsonify }}
+    }
+      {%- endfor -%}
+    {%- else -%}
+        {%- unless first %},{% endunless -%}{%- assign first = false -%}
     {
       "sku":             {{ product.sku            | jsonify }},
       "name":            {{ product.name           | jsonify }},
-      "slug":            {{ product.url | replace: "/shop/", "" | replace: "/", "" | jsonify }},
+      "slug":            {{ slug                   | jsonify }},
       "category":        {{ product.category       | jsonify }},
       "price_cents":     {{ product.price | times: 100 | round }},
       "price_display":   {{ product.price_display  | jsonify }},
@@ -22,7 +48,8 @@ permalink: /products.json
       "ship_length_in":  {{ product.ship_length_in | default: 0 }},
       "ship_width_in":   {{ product.ship_width_in  | default: 0 }},
       "ship_height_in":  {{ product.ship_height_in | default: 0 }}
-    }{%- unless forloop.last -%},{%- endunless -%}
+    }
+    {%- endif -%}
     {%- endfor -%}
   ]
 }

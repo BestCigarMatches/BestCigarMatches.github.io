@@ -20,6 +20,27 @@ images:
   - https://bcm-media.b-cdn.net/products/leather-accessories/cigar-stand/cigar-stand-08.jpg
   - https://bcm-media.b-cdn.net/products/leather-accessories/cigar-stand/cigar-stand-09.jpg
   - https://bcm-media.b-cdn.net/products/leather-accessories/cigar-stand/cigar-stand-10.jpg
+variants:
+  - color: Blue
+    sku_suffix: BLUE
+    image_prefix: https://bcm-media.b-cdn.net/products/leather-accessories/cigar-stand/blue/cigar-stand-blue
+    image_count: 1
+    in_stock: false
+  - color: Brown
+    sku_suffix: BRN
+    image_prefix: https://bcm-media.b-cdn.net/products/leather-accessories/cigar-stand/brown/cigar-stand-brown
+    image_count: 1
+    in_stock: true
+  - color: Walnut
+    sku_suffix: WLNT
+    image_prefix: https://bcm-media.b-cdn.net/products/leather-accessories/cigar-stand/walnut/cigar-stand-walnut
+    image_count: 1
+    in_stock: false
+  - color: English Bridle
+    sku_suffix: ENBR
+    image_prefix: https://bcm-media.b-cdn.net/products/leather-accessories/cigar-stand/english-bridle/cigar-stand-englishbridle
+    image_count: 1
+    in_stock: true
 stripe_price_id: ""
 # Shipping dims — verified
 ship_weight_oz: 2
@@ -31,8 +52,6 @@ related:
   - BCM-CC-03
   - BCM-LA-MP
 ---
-
-**NOTE: ONLY THE "TAN" CIGAR STAND IS CURRENTLY AVAILABLE.**
 
 A hand-finished leather cigar stand designed to hold your cigar steady while you step away. When you are done, it lays flat — slim enough to tuck into a cigar case or leave on the desk without it being in the way.
 
