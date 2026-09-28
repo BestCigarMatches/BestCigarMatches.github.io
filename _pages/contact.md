@@ -54,6 +54,12 @@ Use the form below for questions, order inquiries, or anything else. If you're a
 	  ></textarea>
 	</div>
 
+	<div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden">
+	  <label>Leave this field empty
+		<input type="text" id="contact-website" name="website" tabindex="-1" autocomplete="off">
+	  </label>
+	</div>
+
 	<button class="btn btn-primary" type="submit" id="contact-submit">
 	  Send Message
 	</button>
@@ -78,6 +84,7 @@ Use the form below for questions, order inquiries, or anything else. If you're a
     var name    = document.getElementById('contact-name').value.trim();
     var email   = document.getElementById('contact-email').value.trim();
     var message = document.getElementById('contact-message').value.trim();
+    var website = document.getElementById('contact-website').value;
 
     if (!name || !email || !message) {
       setStatus('error', 'Please fill in all fields.');
@@ -90,7 +97,7 @@ Use the form below for questions, order inquiries, or anything else. If you're a
     fetch(apiUrl + '/contact', {
       method:  'POST',
       headers: { 'Content-Type': 'application/json' },
-      body:    JSON.stringify({ name: name, email: email, message: message })
+      body:    JSON.stringify({ name: name, email: email, message: message, website: website })
     })
     .then(function (res) {
       return res.json().then(function (data) {
