@@ -14,7 +14,7 @@ images:
 - https://bcm-media.b-cdn.net/products/cigar-matches/cigar-matches-03.jpg
 stripe_price_id: ""
 # Shipping dims — verified
-ship_weight_oz: 8
+ship_weight_oz: 5
 ship_length_in: 11.5
 ship_width_in: 8
 ship_height_in: 1
