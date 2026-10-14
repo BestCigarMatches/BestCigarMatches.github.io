@@ -88,5 +88,6 @@ exclude:
   - node_modules/
   - vendor/
   - decisions.md
+  - CLAUDE.md
   - borrowed-from-the-falcon.md
   - bcmgithubissues.csv
