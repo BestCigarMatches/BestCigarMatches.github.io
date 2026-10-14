@@ -98,3 +98,7 @@ Related products are resolved by SKU in `_layouts/product.html` via `where: "sku
 ## Local-Only Knowledge
 
 The `.kt/` directory is gitignored and contains long-form knowledge-transfer docs maintained by hand (`admin-architecture.md`, `decisions.md`, `PROJECT_KNOWLEDGE.md`, `KT-design-system.md`). When you need history, rationale, or details about the Flask side that aren't obvious from the code in this repo, read those files locally. They are authoritative for context but should not be relied on by future tooling that only sees committed files.
+
+## Weekly roundup
+
+When you write release notes or ship user-facing changes (public TestFlight build, App Store submission, `fly deploy` / `wrangler deploy`), append a line to `~/projects/THIS-WEEK.md`. Follow the rules in `~/projects/weekly-roundup-rule.md`.
