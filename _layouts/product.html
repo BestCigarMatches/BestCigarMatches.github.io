@@ -143,7 +143,7 @@
 						<img
 						  class="monogram-style-card__img"
 						  src="{{ style.image_detail }}"
-						  alt="{{ style.label }}"
+						  alt="{{ style.label | escape }}"
 						  data-detail="{{ style.image_detail }}"
 						  data-case="{{ style.image_case }}"
 						  id="monogram-style-img-{{ style.id }}"
@@ -154,7 +154,7 @@
 						  data-target="monogram-style-img-{{ style.id }}"
 						  data-detail="{{ style.image_detail }}"
 						  data-case="{{ style.image_case }}"
-						  aria-label="Toggle view for {{ style.label }}"
+						  aria-label="Toggle view for {{ style.label | escape }}"
 						>
 						  See it on the case ↔
 						</button>
@@ -163,7 +163,7 @@
 						  name="monogram-style"
 						  id="monogram-style-{{ style.id }}"
 						  value="{{ style.id }}"
-						  data-label="{{ style.label }}"
+						  data-label="{{ style.label | escape }}"
 						  class="monogram-style-radio"
 						>
 						<span class="monogram-style-card__label">{{ style.label }}</span>
