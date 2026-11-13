@@ -47,7 +47,7 @@ variants:
     sku_suffix: BRN
     image_prefix: https://bcm-media.b-cdn.net/products/cigar-cases/cigar-case-3/brown/cigar-case-03-brown
     image_count: 2
-    in_stock: true
+    in_stock: false
 stripe_price_id: ""
 # Shipping dims — ESTIMATE, verify with scale + tape measure before launch
 ship_weight_oz: 4
