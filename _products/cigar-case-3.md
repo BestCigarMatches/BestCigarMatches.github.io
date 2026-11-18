@@ -49,11 +49,11 @@ variants:
     image_count: 2
     in_stock: false
 stripe_price_id: ""
-# Shipping dims — ESTIMATE, verify with scale + tape measure before launch
-ship_weight_oz: 4
-ship_length_in: 6
-ship_width_in: 3
-ship_height_in: 2
+# Shipping dims — measured packed (box + packaging) 2026-11-18
+ship_weight_oz: 11
+ship_length_in: 11
+ship_width_in: 11
+ship_height_in: 1
 related:
   - BCM-CC-05
   - BCM-LA-SD
