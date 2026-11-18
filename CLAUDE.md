@@ -34,7 +34,7 @@ The two systems meet at the network boundary only. The Jekyll side knows the Fla
 
 Three files implement the storefront flow. Read them together if you touch any of them:
 
-- `_layouts/product.html` — emits an Add to Cart button with `data-product-*` attributes (sku, name, price, img, exclusive, monogram, monogram-price, monogram-style). For monogram-eligible products it also renders the opt-in / style picker / initials input UI and an inline script that writes the chosen style label back onto the button.
+- `_layouts/product.html` — emits an Add to Cart button with `data-product-*` attributes (sku, name, price, img, exclusive, monogram, monogram-price, monogram-style). For monogram-eligible products it also renders the opt-in / style picker / initials input UI and an inline script that writes the chosen style label back onto the button. **Always `| escape` front-matter values inside HTML attributes** — style labels contain `"` (inch marks), and an unescaped `data-label` silently truncated every monogram style to `1/4` etc. until 2026-11-18.
 - `assets/js/cart.js` — owns cart state (in-memory + `sessionStorage` under key `bcm_cart`), the cart drawer, qty controls, and the Add-to-Cart button wiring. Exposes `window.BCM_cart` (`getItems`, `getSubtotal`, `clearCart`).
 - `assets/js/checkout.js` — owns the two-step checkout modal (info → Stripe Payment Element). Reads Stripe publishable key from `<meta name="stripe-key">` and the API base from `<meta name="api-url">`. Calls `apiUrl + '/create-checkout'` and uses the returned `client_secret` to mount Stripe's Payment Element. On success Stripe redirects to `/order-confirmed/`. Exposes `window.BCM_openCheckout(items, subtotal)`.
 
@@ -46,7 +46,7 @@ Items are keyed by `sku|monogram|monogramStyle|monogramText`, not by SKU alone. 
 
 ### Trust boundary
 
-**Prices and monogram upcharges are validated server-side in Flask.** Client-sent prices are never trusted. The Jekyll side computes a display subtotal for UX; the authoritative total is what Flask returns from `/create-checkout`. When adding a product, mirror the price in the Flask `PRODUCTS` dict (in `routes/checkout.py` on PythonAnywhere) — otherwise the SKU will be rejected at checkout.
+**Prices and monogram upcharges are validated server-side in Flask.** Client-sent prices are never trusted. The Jekyll side computes a display subtotal for UX; the authoritative total is what Flask returns from `/create-checkout`. Flask reads products (price, ship dims, monogram flag) from its cached copy of this site's `/products.json`. After adding a product or changing its price or ship dims, push, wait for the Pages build, then click **/admin/catalog → "Refresh from site"** — until then checkout rejects new SKUs and uses the old price/dims.
 
 ### Exclusive products
 
